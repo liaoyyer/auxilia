@@ -12,7 +12,15 @@
 
 <p>
   <strong>Status:</strong>
-  <%= @ticket.status %>
+	<%= case @ticket.status
+                when nil
+                  'OPEN'
+                when 0
+                  'IN PROGRESS'
+                when 1
+                  'CLOSED'
+                end
+    %>
 </p>
 
 <p>
