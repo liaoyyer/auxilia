@@ -26,7 +26,18 @@
 
         <td><%= ticket.created_at %></td>
         <td><%= ticket.updated_at %></td>
-        <td><%= ticket.status %></td>
+
+
+        <td><%= case ticket.status
+                when nil
+                  'OPEN'
+                when 0
+                  'IN PROGRESS'
+                when 1
+                  'CLOSED'
+                end
+         %></td>
+
 
         <td><%= link_to 'Show', ticket, class: 'btn btn-primary btn-xs' %></td>
         <td><%= link_to 'Edit', edit_ticket_path(ticket), class: 'btn btn-info btn-xs' %></td>
