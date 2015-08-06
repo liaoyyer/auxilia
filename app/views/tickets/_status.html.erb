@@ -1,0 +1,9 @@
+<%= case ticket_status
+      when nil
+            'OPEN'
+      when 0
+            'IN PROGRESS'
+      when 1
+            'CLOSED'
+      end
+%>
