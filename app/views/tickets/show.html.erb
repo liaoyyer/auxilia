@@ -11,16 +11,13 @@
 </p>
 
 <p>
+  <strong>Category:</strong>
+  <%= @ticket.category %>
+</p>
+
+<p>
   <strong>Status:</strong>
-	<%= case @ticket.status
-                when nil
-                  'OPEN'
-                when 0
-                  'IN PROGRESS'
-                when 1
-                  'CLOSED'
-                end
-    %>
+  <%= render partial: "status", locals: {ticket_status: @ticket.status} %>
 </p>
 
 <p>
