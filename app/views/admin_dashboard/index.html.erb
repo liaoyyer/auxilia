@@ -1,4 +1,4 @@
-<h1>Ticket Listing</h1>
+<h1>Admin Dashboard</h1>
 
 <table class="table table-hover">
   <thead>
@@ -28,9 +28,7 @@
        
         <td><%= render partial: "shared/status", locals: {ticket_status: ticket.status} %></td>
 
-        <td><%= link_to 'Show', ticket, class: 'btn btn-primary btn-xs' %></td>
-        <td><%= link_to 'Edit', edit_ticket_path(ticket), class: 'btn btn-info btn-xs' %></td>
-        <td><%= link_to 'Destroy', ticket, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs' %></td>
+
 
 
       </tr>
@@ -39,12 +37,3 @@
 </table>
 
 <br>
-
-
-
-
-
-
-<%= link_to new_ticket_path, class: 'btn btn-success' do %>
-  <i class="glyphicon glyphicon-plus"></i> New Ticket
-<% end %>

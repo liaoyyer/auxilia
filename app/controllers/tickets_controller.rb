@@ -1,5 +1,6 @@
 class TicketsController < ApplicationController
-  before_action :authenticate_access
+  before_action :adminfilter
+  before_action :authenticate_user
   before_action :set_ticket, only: [:show, :edit, :update, :destroy]
 
   # GET /tickets
@@ -74,8 +75,9 @@ class TicketsController < ApplicationController
     end
 
 
-    def authenticate_access
-      unless user_signed_in? || admin_signed_in?
+    # only a signed in user can have access to this (not even admins)
+    def authenticate_user
+      if !(user_signed_in?)
         redirect_to '/'
       end
     end

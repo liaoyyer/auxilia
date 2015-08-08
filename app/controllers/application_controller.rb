@@ -4,9 +4,37 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
 
-  def after_sign_in_path_for(admin)
-  	tickets_path
+  # After devise sign in
+  def after_sign_in_path_for(resource)
+  	if resource.class == User
+  			tickets_path
+  	elsif resource.class == Admin
+  			admin_dashboard_path
+  	end
   end
+
+
+
+
+  def adminfilter
+    if admin_signed_in?
+      redirect_to admin_dashboard_path
+    end
+  end
+
+
+
+  def userfilter
+    if user_signed_in?
+      redirect_to '/'
+    end
+  end
+
+
+
+
+
+
 
 
 

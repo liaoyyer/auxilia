@@ -2,17 +2,17 @@ Rails.application.routes.draw do
 
   resources :tickets
 
-
+  get 'admin_dashboard', to: 'admin_dashboard#index'
 
   
   devise_for :users, controllers: { sessions: "users/sessions", passwords: "users/passwords", registrations: "users/registrations" }
 
   devise_scope :user do
     authenticated :user do
-      root :to => 'tickets#index', as: :authenticated_root
+      root :to => 'tickets#index', as: :authenticated_user_root
     end
     unauthenticated :user do
-      root :to => 'users/sessions#new', as: :unauthenticated_root
+      root :to => 'users/sessions#new', as: :unauthenticated_user_root
     end
   end
 
@@ -20,7 +20,6 @@ Rails.application.routes.draw do
 
 
   devise_for :admins, controllers: { sessions: "admins/sessions", passwords: "admins/passwords", registrations: "admins/registrations" }
-
 
 
 

@@ -1,4 +1,8 @@
 class Admins::RegistrationsController < Devise::RegistrationsController
+
+  before_action :userfilter
+
+
 # before_filter :configure_sign_up_params, only: [:create]
 # before_filter :configure_account_update_params, only: [:update]
 

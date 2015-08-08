@@ -1,4 +1,8 @@
 class Admins::SessionsController < Devise::SessionsController
+
+  before_action :userfilter
+
+
 # before_filter :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
@@ -22,4 +26,12 @@ class Admins::SessionsController < Devise::SessionsController
   # def configure_sign_in_params
   #   devise_parameter_sanitizer.for(:sign_in) << :attribute
   # end
+
+
+  layout "admin_layout"
+
+
+
+
+
 end
