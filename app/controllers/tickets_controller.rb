@@ -75,10 +75,10 @@ class TicketsController < ApplicationController
     end
 
 
-    # only a signed in user can have access to this (not even admins)
+    # redirect to user login screen if not signed in yet
     def authenticate_user
       if !(user_signed_in?)
-        redirect_to '/'
+        redirect_to new_user_session_path
       end
     end
 
