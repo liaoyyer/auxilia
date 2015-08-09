@@ -20,13 +20,11 @@
         <td><%= ticket.id %></td>
         <td><%= ticket.title %></td>
         <td><%= ticket.category %></td>
-
         <td><%= ticket.created_at %></td>
         <td><%= ticket.updated_at %></td>
-
-
-       
         <td><%= render partial: "shared/status", locals: {ticket_status: ticket.status} %></td>
+
+
 
         <td><%= link_to 'Show', ticket, class: 'btn btn-primary btn-xs' %></td>
         <td><%= link_to 'Edit', edit_ticket_path(ticket), class: 'btn btn-info btn-xs' %></td>
@@ -44,7 +42,8 @@
 
 
 
-
-<%= link_to new_ticket_path, class: 'btn btn-success' do %>
-  <i class="glyphicon glyphicon-plus"></i> New Ticket
+<% if user_signed_in? %>
+  <%= link_to new_ticket_path, class: 'btn btn-success' do %>
+    <i class="glyphicon glyphicon-plus"></i> New Ticket
+  <% end %>
 <% end %>

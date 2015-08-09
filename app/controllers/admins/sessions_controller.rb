@@ -28,7 +28,7 @@ class Admins::SessionsController < Devise::SessionsController
   # end
 
 
-  layout "admin_layout"
+
 
 
 

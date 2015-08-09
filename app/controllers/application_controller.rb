@@ -31,7 +31,11 @@ class ApplicationController < ActionController::Base
   end
 
 
-
+  def authenticate_access
+  	unless admin_signed_in? || user_signed_in?
+  		redirect_to '/'
+  	end
+  end
 
 
 

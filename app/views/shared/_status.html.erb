@@ -1,9 +1,9 @@
 <%= case ticket_status
       when nil
             'OPEN'
-      when 0
+      when false
             'IN PROGRESS'
-      when 1
+      when true
             'CLOSED'
       end
 %>

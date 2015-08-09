@@ -1,0 +1,32 @@
+<%= form_for(@ticket) do |f| %>
+
+
+  <div class="field">
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.label :category %><br>
+    <%= f.text_field :category %>
+  </div>
+  <div class="field">
+    <%= f.label :solution %><br>
+    <%= f.text_area :solution %><br>
+  </div>
+  <div class="field">
+    <%= f.label :status %><br>
+    <%= f.label :status, "In Progress", :value => "false"  %>
+    <%= f.radio_button :status, false, :checked => true %>
+    <%= f.label :status, "Closed", :value => "true" %>
+    <%= f.radio_button :status, true %>
+  </div>
+
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

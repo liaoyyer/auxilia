@@ -20,15 +20,13 @@
         <td><%= ticket.id %></td>
         <td><%= ticket.title %></td>
         <td><%= ticket.category %></td>
-
         <td><%= ticket.created_at %></td>
         <td><%= ticket.updated_at %></td>
-
-
-       
         <td><%= render partial: "shared/status", locals: {ticket_status: ticket.status} %></td>
 
-
+        <td><%= link_to 'Show', ticket, class: 'btn btn-primary btn-xs' %></td>
+        <td><%= link_to 'Resolve', edit_ticket_path(ticket), class: 'btn btn-info btn-xs' %></td>
+        <td><%= link_to 'Destroy', ticket, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs' %></td>
 
 
       </tr>

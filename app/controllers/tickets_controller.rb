@@ -1,6 +1,8 @@
 class TicketsController < ApplicationController
-  before_action :adminfilter
-  before_action :authenticate_user
+
+  # Only users and admins are allowed to access tickets
+  before_action :authenticate_access
+  
   before_action :set_ticket, only: [:show, :edit, :update, :destroy]
 
   # GET /tickets
@@ -58,7 +60,13 @@ class TicketsController < ApplicationController
   def destroy
     @ticket.destroy
     respond_to do |format|
-      format.html { redirect_to tickets_url, notice: 'Ticket was successfully destroyed.' }
+      if user_signed_in? 
+        format.html { redirect_to tickets_url, notice: 'Ticket was successfully destroyed by user.' }
+      elsif admin_signed_in?
+        format.html { redirect_to admin_dashboard_url, notice: 'Ticket was successfully destroyed by admin.' }
+      end
+
+
       format.json { head :no_content }
     end
   end
@@ -75,12 +83,7 @@ class TicketsController < ApplicationController
     end
 
 
-    # redirect to user login screen if not signed in yet
-    def authenticate_user
-      if !(user_signed_in?)
-        redirect_to new_user_session_path
-      end
-    end
+
 
 
 

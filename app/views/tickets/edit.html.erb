@@ -1,6 +1,21 @@
-<h1>Editing Ticket</h1>
+<% if user_signed_in? %>
+	<h1>Editing Ticket</h1>
+	<%= render 'form' %>
+<% elsif admin_signed_in? %>
+	<h1>Resolving Ticket</h1>
+	<%= render partial: "shared/adminform" %>
+<% end %>
 
-<%= render 'form' %>
+
+
+
+
+
+
 
 <%= link_to 'Show', @ticket %> |
+<% if user_signed_in? %>
 <%= link_to 'Back', tickets_path %>
+<% elsif admin_signed_in? %>
+<%= link_to 'Back', admin_dashboard_path%>
+<% end %>

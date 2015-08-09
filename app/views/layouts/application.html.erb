@@ -1,15 +1,27 @@
 <!DOCTYPE html>
 <html>
   <head>
+
+    <% if admin_signed_in? %>
+    <title>Auxilia Administration</title>
+    <% else %>
     <title>Auxilia</title>
+    <% end %>
+
+
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
   </head>
   <body>
 
+    <% if admin_signed_in? %>
+    <%= render 'shared/admin_navigation' %>
+    <% else %>
     <%= render 'shared/navigation' %>
+    <% end %>
 
+    
     <div id="main-container" class="container">
 
        <p class="notice"><%= notice %></p>
