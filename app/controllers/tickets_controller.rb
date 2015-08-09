@@ -2,7 +2,7 @@ class TicketsController < ApplicationController
 
   # Only users and admins are allowed to access tickets
   before_action :authenticate_access
-  
+
   before_action :set_ticket, only: [:show, :edit, :update, :destroy]
 
   # GET /tickets
@@ -79,7 +79,7 @@ class TicketsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def ticket_params
-      params.require(:ticket).permit(:title, :description, :category, :status, :solution)
+      params.require(:ticket).permit(:title, :description, :category, :user_id, :admin_id, :status, :solution)
     end
 
 

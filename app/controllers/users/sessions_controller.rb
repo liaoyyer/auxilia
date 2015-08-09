@@ -1,6 +1,6 @@
 class Users::SessionsController < Devise::SessionsController
 
-  # an admin cannot login as a user at the same time as being logged in as an admin
+  # an admin cannot login as a user while they're still logged in as an admin
   before_action :adminfilter
 
 

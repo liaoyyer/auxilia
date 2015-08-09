@@ -16,6 +16,12 @@
 </p>
 
 <p>
+  <strong>User ID:</strong>
+  <%= @ticket.user_id %>
+</p>
+
+
+<p>
   <strong>Status:</strong>
   <%= render partial: "shared/status", locals: {ticket_status: @ticket.status} %>
 </p>
@@ -25,6 +31,10 @@
   <%= @ticket.solution %>
 </p>
 
+<p>
+  <strong>Admin ID:</strong>
+  <%= @ticket.admin_id %>
+</p>
 
 
 <%= link_to 'Edit', edit_ticket_path(@ticket) %> |

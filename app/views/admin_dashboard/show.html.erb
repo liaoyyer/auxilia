@@ -15,6 +15,13 @@
   <%= @ticket.category %>
 </p>
 
+
+<p>
+  <strong>User ID:</strong>
+  <%= @ticket.user_id %>
+</p>
+
+
 <p>
   <strong>Status:</strong>
   <%= render partial: "shared/status", locals: {ticket_status: @ticket.status} %>
@@ -24,6 +31,14 @@
   <strong>Solution:</strong>
   <%= @ticket.solution %>
 </p>
+
+<p>
+  <strong>Admin ID:</strong>
+  <%= @ticket.admin_id %>
+</p>
+
+
+
 
 <%= link_to 'Edit', edit_ticket_path(@ticket) %> |
 <%= link_to 'Back', tickets_path %>
