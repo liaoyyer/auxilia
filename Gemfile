@@ -45,7 +45,7 @@ gem 'autoprefixer-rails'
 
 gem 'devise'
 
-
+gem 'jquery-datatables-rails', '~> 3.3.0'
 
 
 
