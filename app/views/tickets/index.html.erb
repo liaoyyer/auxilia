@@ -1,6 +1,6 @@
 <h1>Ticket Listing</h1>
 
-<table class="table table-hover">
+<table id="tickets" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
   <thead>
     <tr>
       <th>Ticket ID</th>
@@ -11,7 +11,7 @@
       <th>Status</th>
       <th>User</th>
       <th>Admin</th>
-      <th colspan="3"></th>
+
     </tr>
   </thead>
 
@@ -23,14 +23,20 @@
         <td><%= ticket.category %></td>
         <td><%= ticket.created_at %></td>
         <td><%= ticket.updated_at %></td>
+
+
+
         <td><%= render partial: "shared/status", locals: {ticket_status: ticket.status} %></td>
+
+
+
+
         <td><%= ticket.user_id %>
         <td><%= ticket.admin_id %> 
 
 
-        <td><%= link_to 'Show', ticket, class: 'btn btn-primary btn-xs' %></td>
-        <td><%= link_to 'Edit', edit_ticket_path(ticket), class: 'btn btn-info btn-xs' %></td>
-        <td><%= link_to 'Destroy', ticket, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs' %></td>
+
+
 
 
       </tr>

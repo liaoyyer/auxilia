@@ -13,7 +13,7 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
   </head>
-  <body>
+  <body data-no-turbolink>
 
     <% if admin_signed_in? %>
     <%= render 'shared/admin_navigation' %>
@@ -21,7 +21,7 @@
     <%= render 'shared/navigation' %>
     <% end %>
 
-    
+
     <div id="main-container" class="container">
 
        <p class="notice"><%= notice %></p>
