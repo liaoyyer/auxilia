@@ -9,3 +9,7 @@ jQuery  ->
   autoWidth: true;
 
 })
+
+
+jQuery ->
+$('[data-toggle="tooltip"]').tooltip(); 
