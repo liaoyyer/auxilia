@@ -29,14 +29,14 @@
         <td><%= ticket.user_id %>
         <td><%= ticket.admin_id %> 
 
-        <td><%= link_to ticket, class: 'btn btn-xs btn-default' do %>
+        <td><%= link_to ticket, class: 'btn btn-xs btn-default', title: 'Show', rel: 'tooltip' do %>
               <i class="fa fa-eye"></i>
             <% end %>
-            <% if current_user.id == ticket.user_id %>
-              <%= link_to edit_ticket_path(ticket), class: 'btn btn-xs btn-default' do %>
+            <% if (user_signed_in? && (current_user.id == ticket.user_id)) || (admin_signed_in?) %>
+              <%= link_to edit_ticket_path(ticket), class: 'btn btn-xs btn-default', title: 'Edit', rel: 'tooltip' do %>
                 <i class="fa fa-edit"></i>
               <% end %>
-              <%= link_to ticket, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-xs btn-default' do %>
+              <%= link_to ticket, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-xs btn-default', title: 'Destroy', rel: 'tooltip' do %>
                 <i class="fa fa-trash"></i>
               <% end %>
             <% end %>

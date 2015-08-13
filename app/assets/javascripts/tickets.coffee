@@ -4,12 +4,5 @@
 
 
 jQuery  ->
-	$('#tickets').DataTable({
-
-  autoWidth: true;
-
-})
-
-
-jQuery ->
-$('[data-toggle="tooltip"]').tooltip(); 
+	$('#tickets').DataTable({autoWidth: true;})
+	$('a[rel~="tooltip"]').tooltip()
