@@ -6,3 +6,10 @@
 a.btn-newticket{
 	color: #ffffff;
 }
+
+// Increase width for table data
+@media (min-width: 1200px) {
+  .container {
+    width: 1200px;
+  }
+}
