@@ -1,5 +1,7 @@
 class Admins::SessionsController < Devise::SessionsController
 
+  layout "adminlogin"
+
   # keep signed-in users from trying to sign in as admins
   # a user cannot login as an admin while they're still logged in as a user
   before_action :userfilter
