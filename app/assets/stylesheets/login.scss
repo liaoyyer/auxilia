@@ -37,7 +37,19 @@ body.login .main-login {
 
 
 
-.box-login 
+.box-login  
+{
+	a:link, a:visited, a:hover, a:active {
+	color: #666 !important;
+    text-decoration: none !important;
+    background-color: transparent !important;
+	}
+}
+
+
+
+
+#ticket-link
 {
 	a:link, a:visited, a:hover, a:active {
 	color: #666 !important;
