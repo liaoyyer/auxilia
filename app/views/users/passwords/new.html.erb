@@ -8,9 +8,14 @@
     <%= f.email_field :email, autofocus: true %>
   </div>
 
+
+
   <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
+    <%= button_tag(type: 'submit', class: "btn btn-danger") do %>
+    Reset Password
+    <% end %>
   </div>
+
+
 <% end %>
 
-<%= render "users/shared/links" %>
