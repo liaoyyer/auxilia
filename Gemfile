@@ -46,7 +46,7 @@ gem 'devise'
 
 gem 'jquery-datatables-rails', '~> 3.3.0'
 
-
+gem 'lazy_high_charts'
 
 
 

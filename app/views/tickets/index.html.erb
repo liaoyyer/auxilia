@@ -23,8 +23,8 @@
         <td><%= ticket.id %></td>
         <td><%= ticket.title %></td>
         <td><%= ticket.category %></td>
-        <td><%= ticket.created_at %></td>
-        <td><%= ticket.updated_at %></td>
+        <td class="timestamp"><%= ticket.created_at %></td>
+        <td class="timestamp"><%= ticket.updated_at %></td>
         <td><%= render partial: "shared/status", locals: {ticket_status: ticket.status} %></td>
         <td><%= ticket.user_id %>
         <td><%= ticket.admin_id %> 

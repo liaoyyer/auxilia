@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :tickets
 
   get 'admin_dashboard', to: 'admin_dashboard#index'
-
+  get 'admin_dashboard/analytics', to: 'admin_dashboard#analytics'
   
   devise_for :users, controllers: { sessions: "users/sessions", passwords: "users/passwords", registrations: "users/registrations" }
 
