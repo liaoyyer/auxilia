@@ -66,7 +66,7 @@ class AdminDashboardController < ApplicationController
   # GET /tickets/new
   def analytics
     get_tickets
-    tally_categories
+    analyze_categories
   end
 
 
@@ -117,7 +117,14 @@ class AdminDashboardController < ApplicationController
 
 
 
-def tally_categories
+
+
+
+
+
+
+
+def analyze_categories
 
   @software_tally = @hardware_tally = @billing_tally = @maintenance_tally = @hr_tally = @other_tally = 0
 
@@ -140,7 +147,56 @@ def tally_categories
   end
 
 
+  @total_tally = @software_tally + @hardware_tally + @billing_tally + @maintenance_tally + @hr_tally + @other_tally
+
+
+
+
+
+  @software_pct = (@software_tally/@total_tally.to_f)*100
+  @hardware_pct = (@hardware_tally/@total_tally.to_f)*100
+  @billing_pct = (@billing_tally/@total_tally.to_f)*100
+  @maintenance_pct = (@maintenance_tally/@total_tally.to_f)*100
+  @hr_pct = (@hr_tally/@total_tally.to_f)*100
+
+
+
+@category_data = [{
+                    name: "Software",
+                    y: @software_pct
+                }, {
+                    name: "Hardware",
+                    y: @hardware_pct
+
+                }, {
+                    name: "Maintenance",
+                    y: @maintenance_pct
+                }, {
+                    name: "Billing",
+                    y: @billing_pct
+                }, {
+                    name: "HR",
+                    y: @hr_pct
+                
+                }]
+
+
+
+
+
+
+
+  gon.category_data = @category_data
+
+
+
+
 end
+
+
+
+
+
 
 
 
