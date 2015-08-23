@@ -66,7 +66,10 @@ class AdminDashboardController < ApplicationController
   # GET /tickets/new
   def analytics
     get_tickets
+    #analyze tickets
     analyze_categories
+    #analyze_admins
+
   end
 
 
@@ -99,6 +102,49 @@ class AdminDashboardController < ApplicationController
 	def get_tickets
 		@tickets = Ticket.all
 	end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+def analyze_tickets
+
+
+# tickets status bar chart
+# tickets submitted per day
+# ticket 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+end
+
+
+
 
 
 
@@ -218,6 +264,9 @@ end
 
 
 
+
+
+
 def tally_status
 
   @closed_tally = @in_progress_tally = @open_tally = 0
@@ -248,14 +297,6 @@ end
 
 
 
-
-def admin_response_data
-
-  # admin response data
-
-
-
-end
 
 
 

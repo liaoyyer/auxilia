@@ -17,4 +17,3 @@
 //= require highcharts/highcharts
 //= require turbolinks
 //= require bootstrap-sprockets
-
