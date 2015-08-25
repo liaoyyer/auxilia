@@ -1,16 +1,44 @@
-<h2>Forgot your password?</h2>
+
+<div class="col-sm-4 col-sm-offset-4">
+<!-- start: TEXT FIELDS PANEL -->
+<div class="panel panel-default">
+
+
+<div class="panel-body">
+
+
+<h2 class="text_center">Reset Password</h2>
 
 <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
   <%= devise_error_messages! %>
 
   <div class="field">
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+    <%= f.email_field :email, autofocus: true, :class => "fullfield" %>
   </div>
+
+
 
   <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
+    <%= button_tag(type: 'submit', class: "btn btn-danger btn-sm fullfield") do %>
+        <i class="fa fa-pencil-square"></i> Reset Password
+    <% end %>
   </div>
+
+
+
 <% end %>
 
-<%= render "admins/shared/links" %>
+
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+

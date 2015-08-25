@@ -66,7 +66,7 @@ class AdminDashboardController < ApplicationController
   # GET /tickets/new
   def analytics
     get_tickets
-    #analyze tickets
+    analyze_ticket_status
     analyze_categories
     #analyze_admins
 
@@ -116,12 +116,6 @@ class AdminDashboardController < ApplicationController
 
 
 
-def analyze_tickets
-
-
-# tickets status bar chart
-# tickets submitted per day
-# ticket 
 
 
 
@@ -133,22 +127,42 @@ def analyze_tickets
 
 
 
+def analyze_ticket_status
+
+  @closed_tally = @in_progress_tally = @open_tally = 0
+
+
+  @tickets.each do |ticket| 
+    case ticket.status
+      when true
+        @closed_tally += 1
+      when false
+        @in_progress_tally += 1
+      else
+        @open_tally += 1
+    end
+  end
 
 
 
 
 
+  gon.status_data = [{
+                    name: "Closed",
+                    y: @closed_tally
+                }, {
+                    name: "In Progress",
+                    y: @in_progress_tally
+
+                }, {
+                    name: "Open",
+                    y: @open_tally
+                }
+                ]
 
 
 
 end
-
-
-
-
-
-
-
 
 
 
@@ -207,7 +221,7 @@ def analyze_categories
 
 
 
-@category_data = [{
+  gon.category_data = [{
                     name: "Software",
                     y: @software_pct
                 }, {
@@ -232,10 +246,6 @@ def analyze_categories
 
 
 
-  gon.category_data = @category_data
-
-
-
 
 end
 
@@ -267,27 +277,7 @@ end
 
 
 
-def tally_status
 
-  @closed_tally = @in_progress_tally = @open_tally = 0
-
-
-  @tickets.each do |ticket| 
-    case ticket.status
-      when true
-        @closed_tally += 1
-      when false
-        @hin_progress_tally += 1
-      else
-        @open_tally += 1
-    end
-  end
-
-
-
-
-
-end
 
 
 

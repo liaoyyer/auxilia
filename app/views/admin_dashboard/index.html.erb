@@ -32,12 +32,38 @@
         <td><%= link_to ticket, class: 'btn btn-xs btn-default', title: 'Show', rel: 'tooltip' do %>
               <i class="fa fa-eye"></i>
             <% end %>
+
+
+
+
+
+
+
+
+
+            <% if ticket.status != true %>
+
             <%= link_to edit_ticket_path(ticket), class: 'btn btn-xs btn-default', title: 'Resolve', rel: 'tooltip' do %>
               <i class="fa fa-life-ring"></i>
             <% end %>
+
+            <% end %>
+
+
+
+
+
+            <% if (current_admin.id == ticket.admin_id) %>
+
             <%= link_to ticket, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-xs btn-default', title: 'Destroy', rel: 'tooltip' do %>
               <i class="fa fa-trash"></i>
             <% end %>
+
+            <% end %>
+
+
+
+
         </td>
       </tr>
     <% end %>

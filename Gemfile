@@ -50,7 +50,7 @@ gem 'lazy_high_charts'
 
 gem 'gon'
 
-
+gem 'faker'
 
 
 

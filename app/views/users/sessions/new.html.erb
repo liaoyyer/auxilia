@@ -1,18 +1,18 @@
 <div class="main-login col-sm-4 col-sm-offset-4">
 <div class="box-login" style="display: block;">
 
-<h2>User Login</h2>
+<h2 class="text_center">User Login</h2>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
   <div class="field">
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, :class => "loginfield" %>
+    <%= f.email_field :email, autofocus: true, :class => "fullfield" %>
   </div>
 
   <div class="field">
     <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off", :class => "loginfield" %>
+    <%= f.password_field :password, autocomplete: "off", :class => "fullfield" %>
   </div>
 
   <% if devise_mapping.rememberable? -%>

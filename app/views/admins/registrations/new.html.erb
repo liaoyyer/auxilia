@@ -1,11 +1,21 @@
-<h2>Admin Registration</h2>
+
+
+
+<div class="col-sm-4 col-sm-offset-4">
+<!-- start: TEXT FIELDS PANEL -->
+<div class="panel panel-default">
+
+
+<div class="panel-body">
+
+<h2 class="text_center">Admin Registration</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
   <div class="field">
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+    <%= f.email_field :email, autofocus: true, :class => "fullfield" %>
   </div>
 
   <div class="field">
@@ -13,17 +23,26 @@
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
+    <%= f.password_field :password, autocomplete: "off", :class => "fullfield" %>
   </div>
 
   <div class="field">
     <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+    <%= f.password_field :password_confirmation, autocomplete: "off", :class => "fullfield" %>
   </div>
 
   <div class="actions">
-    <%= f.submit "Register" %>
+    <%= button_tag(type: 'submit', class: "btn btn-danger btn-sm fullfield") do %>
+        <i class="fa fa-pencil-square"></i> Register
+    <% end %>
   </div>
 <% end %>
 
-<%= render "admins/shared/links" %>
+
+
+
+
+
+</div>
+</div>
+</div>
