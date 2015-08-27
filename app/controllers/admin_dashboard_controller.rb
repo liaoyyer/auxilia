@@ -67,6 +67,7 @@ class AdminDashboardController < ApplicationController
   def analytics
     get_tickets
     analyze_ticket_status
+    analyze_yearly_ticket_activity
     analyze_categories
     #analyze_admins
 
@@ -140,11 +141,12 @@ def analyze_ticket_status
         @in_progress_tally += 1
       else
         @open_tally += 1
+
     end
+
+
+
   end
-
-
-
 
 
   gon.status_data = [{
@@ -162,7 +164,88 @@ def analyze_ticket_status
 
 
 
+
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+def analyze_yearly_ticket_activity
+
+
+
+  gon.monthly_created_activity = []
+  gon.monthly_closed_activity = []
+
+
+
+  @monthly_created_activity = []
+  @monthly_closed_activity = []
+
+  
+
+
+
+  # starting 1 year ago (12months ago)
+  @date_index = (DateTime.now - 1.year)
+
+  @month_index = 1
+
+
+  while @month_index <= 12
+    @monthly_created_tally = @monthly_closed_tally = 0
+
+
+
+
+    @tickets.each do |ticket|
+      if (ticket.status == true) && (ticket.created_at.month == @date_index.month)
+         @monthly_created_tally += 1
+      end
+      if (ticket.status == true) && (ticket.closed_at.month == @date_index.month)
+         @monthly_closed_tally += 1
+      end
+    end # end of ticket loop
+
+
+
+    gon.monthly_created_activity << @monthly_created_tally
+    gon.monthly_closed_activity << @monthly_closed_tally
+
+
+    # increment indexes to iterate through 12 months of data
+    @date_index = @date_index + 1.month 
+    @month_index += 1
+
+
+  end # end of while loop
+
+
+
+
+
+
+
+
+end
+
 
 
 
@@ -199,7 +282,7 @@ def analyze_categories
         @maintenance_tally += 1
       when 'Billing'
         @billing_tally += 1
-      when 'Human Resources'
+      when 'HR'
         @hr_tally += 1
       else
         @other_tally += 1
@@ -218,6 +301,7 @@ def analyze_categories
   @billing_pct = (@billing_tally/@total_tally.to_f)*100
   @maintenance_pct = (@maintenance_tally/@total_tally.to_f)*100
   @hr_pct = (@hr_tally/@total_tally.to_f)*100
+  @other_pct = (@other_tally/@total_tally.to_f)*100
 
 
 
@@ -238,7 +322,10 @@ def analyze_categories
                     name: "HR",
                     y: @hr_pct
                 
-                }]
+                },{
+                    name: "Other",
+                    y: @other_pct
+                  }]
 
 
 
