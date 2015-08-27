@@ -20,7 +20,6 @@ namespace :db do
         ticket.user_id = user.id
         ticket.title = Populator.words(2..4).titleize
         ticket.description = Populator.sentences(2..20)
-        ticket.solution = Populator.sentences(2..20)
         ticket.status = [nil, false, true]
         ticket.created_at = (2.years.ago..DateTime.now)
 
@@ -36,6 +35,7 @@ namespace :db do
 
 
         if ticket.status == true
+            ticket.solution = Populator.sentences(2..20)
             ticket.closed_at = ( (ticket.created_at+1.second)..DateTime.now)
         end
 
@@ -48,6 +48,9 @@ namespace :db do
         if ticket.status == false || ticket.status == true
           ticket.admin_id = 1..5
         end
+
+
+
       end
 
     end
