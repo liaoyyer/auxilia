@@ -1,9 +1,19 @@
 class TicketsController < ApplicationController
 
-  # Only users and admins are allowed to access tickets
+
+
+  layout 'userlogin'
+
+
+
+
+
+  # restrict access to users and admins only
   before_action :authenticate_access
 
   before_action :set_ticket, only: [:show, :edit, :update, :destroy]
+
+
 
   # GET /tickets
   # GET /tickets.json
@@ -21,9 +31,33 @@ class TicketsController < ApplicationController
     @ticket = Ticket.new
   end
 
+
+
+
+
+
+
+
+
+
+
+
   # GET /tickets/1/edit
   def edit
+    # restrict edit access to the creator of the ticket
+    unless current_user.id == @ticket.user_id
+      redirect_to '/'
+    end
+
   end
+
+
+
+
+
+
+
+
 
   # POST /tickets
   # POST /tickets.json

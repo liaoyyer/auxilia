@@ -1,15 +1,46 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <% if admin_signed_in? %>
+    <title>Auxilia Administration</title>
+    <% else %>
     <title>Auxilia</title>
+    <% end %>
+    <%= include_gon %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application'%>
+    <%= javascript_include_tag 'tickets'%>
     <%= csrf_meta_tags %>
   </head>
-  <body class="login adminlogin">
 
-    <%= render 'shared/navigation' %>
 
+
+
+
+
+
+
+
+
+ <!-- body background -->
+ <% if admin_signed_in? %>
+    <body data-no-turbolink>
+<% else %>
+    <body class="login adminlogin" data-no-turbolink>
+<% end %>
+
+
+
+
+
+
+
+
+
+
+
+    <%= render 'shared/admin_navigation' %>
+ 
 
 
     <div id="main-container" class="container">
@@ -25,6 +56,5 @@
 
 
     </div>
-
   </body>
 </html>

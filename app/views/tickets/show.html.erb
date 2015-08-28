@@ -37,7 +37,7 @@
 </p>
 
 
-<%= link_to 'Edit', edit_ticket_path(@ticket) %> |
+
 <% if user_signed_in? %>
 <%= link_to 'Back', tickets_path %>
 <% elsif admin_signed_in? %>

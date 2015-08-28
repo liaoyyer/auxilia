@@ -31,24 +31,21 @@
         <td><%= ticket.user_id %>
         <td><%= ticket.admin_id %> 
 
-        <td><%= link_to ticket, class: 'btn btn-xs btn-default', title: 'Show', rel: 'tooltip' do %>
+        <td><%= link_to show_admin_path(ticket), class: 'btn btn-xs btn-default', title: 'Show', rel: 'tooltip' do %>
               <i class="fa fa-eye"></i>
             <% end %>
 
 
 
+            <!-- link images displayed when appropriate -->
+            <!-- actual access to actions limited by the controller -->
 
 
-
-
-
-
-            <% if ticket.status != true %>
-
-            <%= link_to edit_ticket_path(ticket), class: 'btn btn-xs btn-default', title: 'Resolve', rel: 'tooltip' do %>
+            <!--if ticket is open or current admin is the ticket admin display the resolve link image -->
+            <% if ticket.status == nil || current_admin.id == ticket.admin_id %>
+              <%= link_to resolve_ticket_path(ticket), class: 'btn btn-xs btn-default', title: 'Resolve', rel: 'tooltip' do %>
               <i class="fa fa-life-ring"></i>
-            <% end %>
-
+              <% end %>
             <% end %>
 
 
@@ -56,8 +53,7 @@
 
 
             <% if (current_admin.id == ticket.admin_id) %>
-
-            <%= link_to ticket, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-xs btn-default', title: 'Destroy', rel: 'tooltip' do %>
+            <%= link_to destroy_ticket_path(ticket), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-xs btn-default', title: 'Destroy', rel: 'tooltip' do %>
               <i class="fa fa-trash"></i>
             <% end %>
 
@@ -78,8 +74,3 @@
 
 
 
-<% if user_signed_in? %>
-  <%= link_to new_ticket_path, class: 'btn btn-success' do %>
-    <i class="glyphicon glyphicon-plus"></i> New Ticket
-  <% end %>
-<% end %>

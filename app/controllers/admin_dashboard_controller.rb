@@ -1,12 +1,14 @@
 class AdminDashboardController < ApplicationController
 
+  layout 'adminlogin'
 
-	# before_action :userfilter
+
+	# restrict access to admins only
 	before_action :authenticate_admin
 
 
 
-	before_action :set_ticket, only: [:show, :edit, :update, :destroy]
+	before_action :set_ticket, only: [:show, :resolve, :update, :destroy]
 
 
 
@@ -27,14 +29,18 @@ class AdminDashboardController < ApplicationController
     @ticket = Ticket.new
   end
 
-  # GET /tickets/1/edit
-  def edit
+  # GET /admin_dashboard/1/resolve
+  def resolve
+    # restrict resolve access to open tickets or appropriate admin
+    unless @ticket.status == nil || current_admin.id == @ticket.admin_id
+      redirect_to '/'
+    end
   end
 
 
 
-  # PATCH/PUT /tickets/1
-  # PATCH/PUT /tickets/1.json
+  # PATCH/PUT /admin_dashboard/1
+  # PATCH/PUT /admin_dashboard/1.json
   def update
     respond_to do |format|
       if @ticket.update(ticket_params)
@@ -47,14 +53,20 @@ class AdminDashboardController < ApplicationController
     end
   end
 
-  # DELETE /tickets/1
-  # DELETE /tickets/1.json
+  # DELETE /admin_dashboard/1
+  # DELETE /admin_dashboard/1.json
   def destroy
-    @ticket.destroy
-    respond_to do |format|
+    # restrict destroy option to appropriate admin
+    if current_admin.id == @ticket.admin_id
+      @ticket.destroy
+      respond_to do |format|
       format.html { redirect_to tickets_url, notice: 'Ticket was successfully destroyed.' }
       format.json { head :no_content }
+      end
+    else
+      redirect_to '/'
     end
+
   end
 
 
@@ -63,7 +75,7 @@ class AdminDashboardController < ApplicationController
 
 
 
-  # GET /tickets/new
+
   def analytics
     get_tickets
     analyze_ticket_status
@@ -72,6 +84,35 @@ class AdminDashboardController < ApplicationController
     #analyze_admins
 
   end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -365,42 +406,14 @@ end
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	# if signed in as user and trying to gain admin access, redirect to root
 	# else if not signed in as admin or user redirect to admin login
 	# (else if signed in as admin properly then allow access to admin_dashboard)
 	def authenticate_admin
      	if !(admin_signed_in?)
        		redirect_to new_admin_session_path
-       	end
-   	end
+      end
+  end
 
 
 

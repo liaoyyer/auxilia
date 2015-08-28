@@ -8,7 +8,18 @@
   </head>
 
 
-  <body class="login userlogin">
+
+  <!-- body background -->
+  <% if user_signed_in? %>
+    <body data-no-turbolink>
+  <% else %>
+    <body class="login userlogin" data-no-turbolink>
+  <% end %>
+
+
+
+
+
 
     <%= render 'shared/navigation' %>
 
