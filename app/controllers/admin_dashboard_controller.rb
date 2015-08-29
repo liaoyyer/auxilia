@@ -30,6 +30,7 @@ class AdminDashboardController < ApplicationController
   end
 
   # GET /admin_dashboard/1/resolve
+  # for resolve page
   def resolve
     # restrict resolve access to open tickets or appropriate admin
     unless @ticket.status == nil || current_admin.id == @ticket.admin_id
@@ -39,19 +40,43 @@ class AdminDashboardController < ApplicationController
 
 
 
+
   # PATCH/PUT /admin_dashboard/1
   # PATCH/PUT /admin_dashboard/1.json
+  # action triggered by resolve button on resolve page
   def update
+
+
+
+    @ticket.admin_id = current_admin.id 
     respond_to do |format|
       if @ticket.update(ticket_params)
-        format.html { redirect_to @ticket, notice: 'Ticket was successfully updated.' }
+        format.html { redirect_to show_admin_path, notice: 'Ticket was successfully updated.' }
         format.json { render :show, status: :ok, location: @ticket }
       else
         format.html { render :edit }
         format.json { render json: @ticket.errors, status: :unprocessable_entity }
       end
     end
+
+
+
+
+
+
+
   end
+
+
+
+
+
+
+
+
+
+
+
 
   # DELETE /admin_dashboard/1
   # DELETE /admin_dashboard/1.json
@@ -257,10 +282,11 @@ def analyze_yearly_ticket_activity
 
 
     @tickets.each do |ticket|
-      if (ticket.status == true) && (ticket.created_at.month == @date_index.month)
+      if (ticket.created_at.month == @date_index.month)
          @monthly_created_tally += 1
       end
-      if (ticket.status == true) && (ticket.closed_at.month == @date_index.month)
+
+      if (ticket.status == true) && (ticket.updated_at.month == @date_index.month)
          @monthly_closed_tally += 1
       end
     end # end of ticket loop

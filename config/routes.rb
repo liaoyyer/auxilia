@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get 'admin_dashboard', to: 'admin_dashboard#index'
   get 'admin_dashboard/analytics', to: 'admin_dashboard#analytics'
   get 'admin_dashboard/:id/resolve', to: 'admin_dashboard#resolve', :as => 'resolve_ticket'
+  patch 'admin_dashboard/:id/', to: 'admin_dashboard#update'
   delete 'admin_dashboard/:id/destroy', to: 'admin_dashboard#destroy', :as => 'destroy_ticket'
   get 'admin_dashboard/:id/show', to: 'admin_dashboard#show', :as => 'show_admin'
   

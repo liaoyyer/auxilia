@@ -8,7 +8,6 @@
       <th>Category</th>
       <th>Created At</th>
       <th>Updated At</th>
-      <th>Closed At</th>
       <th>Status</th>
       <th>User</th>
       <th>Admin</th>
@@ -26,7 +25,6 @@
         <td><%= ticket.category %></td>
         <td class="timestamp"><%= ticket.created_at %></td>
         <td class="timestamp"><%= ticket.updated_at %></td>
-        <td class="timestamp"><%= ticket.closed_at %></td>
         <td><%= render partial: "shared/status", locals: {ticket_status: ticket.status} %></td>
         <td><%= ticket.user_id %>
         <td><%= ticket.admin_id %> 

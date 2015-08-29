@@ -1,4 +1,4 @@
-<%= form_for(@ticket) do |f| %>
+<%= form_for @ticket, url: url_for(controller: :admin_dashboard, action: "update") do |f| %>
 
 
   <div class="field">
@@ -26,12 +26,11 @@
   </div>
 
 
-  <%= f.hidden_field :admin_id, :value => current_admin.id %>
+
 
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Resolve Ticket", class: "btn btn-success" %>
   </div>
-
 
 <% end %>

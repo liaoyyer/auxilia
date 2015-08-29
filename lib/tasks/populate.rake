@@ -20,34 +20,39 @@ namespace :db do
         ticket.user_id = user.id
         ticket.title = Populator.words(2..4).titleize
         ticket.description = Populator.sentences(2..20)
+        ticket.category = ['Software', 'Hardware', 'Maintenance', 'Billing', 'HR', 'Other']
         ticket.status = [nil, false, true]
         ticket.created_at = (2.years.ago..DateTime.now)
 
 
 
-      
-        random_update = rand(4)
-        if ticket.status == nil && random_update == 1
-            ticket.updated_at = ( (ticket.created_at+1.second)..DateTime.now)
-        else
+        if ticket.status == nil
             ticket.updated_at = nil
         end
 
-
-        if ticket.status == true
+        random_update = rand(4)
+        if ticket.status == nil && random_update == 1
+            ticket.updated_at = ( (ticket.created_at+1.second)..DateTime.now)
+        elsif ticket.status == false
+            ticket.updated_at = ( (ticket.created_at+1.second)..DateTime.now)
+        elsif ticket.status == true
             ticket.solution = Populator.sentences(2..20)
-            ticket.closed_at = ( (ticket.created_at+1.second)..DateTime.now)
+            ticket.updated_at = ( (ticket.created_at+1.second)..DateTime.now)
         end
 
 
 
-        ticket.category = ['Software', 'Hardware', 'Maintenance', 'Billing', 'HR', 'Other']
+        
 
 
 
         if ticket.status == false || ticket.status == true
           ticket.admin_id = 1..5
         end
+
+
+
+
 
 
 
