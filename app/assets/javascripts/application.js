@@ -15,5 +15,6 @@
 //= require dataTables/jquery.dataTables
 //= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
 //= require highcharts/highcharts
+//= require tinymce-jquery
 //= require turbolinks
 //= require bootstrap-sprockets

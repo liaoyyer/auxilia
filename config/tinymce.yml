@@ -1,0 +1,11 @@
+width: 850
+height: 450
+menubar: false
+statusbar: false
+theme: modern
+skin: light
+toolbar:
+  - styleselect | fontsizeselect | bold italic underline | undo redo | image | link
+plugins:
+  - image
+  - link
