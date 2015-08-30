@@ -5,16 +5,19 @@
   <%= @ticket.title %>
 </p>
 
+<br>
+
 <p>
   <strong>Description:</strong>
-  <%= @ticket.description %>
+  <%= @ticket.description.html_safe %>
 </p>
+
+<br>
 
 <p>
   <strong>Category:</strong>
   <%= @ticket.category %>
 </p>
-
 
 <p>
   <strong>User ID:</strong>
@@ -27,10 +30,14 @@
   <%= render partial: "shared/status", locals: {ticket_status: @ticket.status} %>
 </p>
 
+<br>
 <p>
   <strong>Solution:</strong>
-  <%= @ticket.solution %>
+  <% if @ticket.solution? %>
+    <%= @ticket.solution.html_safe %>
+  <% end %>
 </p>
+<br>
 
 <p>
   <strong>Admin ID:</strong>
