@@ -443,17 +443,14 @@ def get_ticket_data
 
   end
 
-  avg_response_time = (@response_time_tally / gon.closed_tickets) 
 
 
 
 
-t = avg_response_time
-mm, ss = t.divmod(60)            #=> [4515, 21]
-hh, mm = mm.divmod(60)           #=> [75, 15]
-dd, hh = hh.divmod(24)           #=> [3, 3]
-gon.avg_response_time = "%d days, %d hours, %d minutes and %d seconds" % [dd, hh, mm, ss]
-#=> 3 days, 3 hours, 15 minutes and 21 seconds
+
+  gon.avg_response_time = "%.2f hrs" % ( (@response_time_tally / gon.closed_tickets) / 3600)
+
+
 
 
 
