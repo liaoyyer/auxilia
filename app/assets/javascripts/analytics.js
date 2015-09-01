@@ -134,7 +134,7 @@ $('#area_chart_container').highcharts({
             x: -20 //center
         },
         xAxis: {
-            categories: ['Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug']
+            categories: ['Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul']
         },
         yAxis: {
             title: {
