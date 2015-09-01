@@ -272,10 +272,15 @@ def analyze_yearly_ticket_activity
 
  #collect data on the past 12 months up to the last completed month
   @date_index = (DateTime.now - 13.months)
+  gon.month_interval = 
+
+  ((DateTime.now - 13.months).month .. (DateTime.now - 1.month).month).each do |m|
+    gon.month_interval << DATE::MONTHNAMES[m]
+  end
+
+
 
   @month_index = 1
-
-
   while @month_index <= 12
     @monthly_created_tally = @monthly_closed_tally = 0
 
@@ -307,6 +312,9 @@ def analyze_yearly_ticket_activity
 
 
 
+
+
+  gon.month_interval = []
 
 
 
