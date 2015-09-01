@@ -199,6 +199,13 @@ $('#area_chart_container').highcharts({
 
 
 
+    $('#total_tickets').html(gon.total_tickets)
+    $('#closed_tickets').html(gon.closed_tickets)
+    $('#avg_response_time').html(gon.avg_response_time)
+
+
+
+
 });
 
 

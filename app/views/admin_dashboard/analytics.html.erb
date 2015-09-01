@@ -1,12 +1,93 @@
 <%= javascript_include_tag "analytics" %>
+
+
+
+
+<div class="row">
+
+<div class="col-sm-8">
+
+	<ul class="mini-stats col-sm-12">
+									<li class="col-sm-4">
+										<div class="sparkline_bar_good">
+											<span><canvas width="41" height="24" style="display: inline-block; width: 41px; height: 24px; vertical-align: top;"></canvas></span>+10%
+										</div>
+										<div class="values">
+											<strong><span id="total_tickets"></span></strong>
+											Total Tickets
+										</div>
+									</li>
+									<li class="col-sm-4">
+										<div class="sparkline_bar_neutral">
+											<span><canvas width="47" height="24" style="display: inline-block; width: 47px; height: 24px; vertical-align: top;"></canvas></span>0%
+										</div>
+										<div class="values">
+											<strong><span id="closed_tickets"></span></strong>
+											Tickets Resolved
+										</div>
+									</li>
+									<li class="col-sm-4">
+										<div class="sparkline_bar_bad">
+											<span><canvas width="41" height="24" style="display: inline-block; width: 41px; height: 24px; vertical-align: top;"></canvas></span>+50%
+										</div>
+										<div class="values">
+											<strong><span id="avg_response_time"></span></strong>
+											Average Response Time
+										</div>
+									</li>
+	</ul>
+
+
+
+</div>
+
+</div>
+
+
+
+
+
 <br>
 <br>
 <br>
 <br>
-<br>
-<br>
-<br>
-<br>
-<div id="pie_chart_container" style="width:350px; height:350px; float: left; margin: 45px;"></div>
-<div id="bar_chart_container" style="width:450px; height:350px; float: left; margin: 45px;"></div>
-<div id="area_chart_container" style="width:890px; height:350px; float: left; margin: 45px;"></div>
+
+
+
+
+<div class="row">
+
+<div class="col-md-4">
+<div class="panel">
+<div class="panel-header"></div>
+<div id="pie_chart_container" style="width:350px; height:350px; margin: 45px;"></div>
+</div>
+</div>
+
+
+
+
+<div class="col-md-4">
+<div class="panel">
+<div class="panel-header"></div>
+<div id="bar_chart_container" style="width:350px; height:350px; float: left; margin: 45px;"></div>
+</div>
+</div>
+
+
+<div class="col-md-4"></div>
+
+
+
+</div>
+
+
+
+<div class="row">
+<div class="col-md-8">
+<div class="panel">
+<div class="panel-header"></div>
+<div id="area_chart_container" style="width:808px; height:350px; float: left; margin: 45px;"></div>
+</div>
+</div>
+</div>

@@ -103,6 +103,7 @@ class AdminDashboardController < ApplicationController
 
   def analytics
     get_tickets
+    get_ticket_data
     analyze_ticket_status
     analyze_yearly_ticket_activity
     analyze_categories
@@ -402,6 +403,60 @@ def analyze_categories
 
 
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+def get_ticket_data
+  gon.total_tickets = Ticket.count
+  gon.closed_tickets = Ticket.where(status: true).count
+
+
+
+
+
+
+  @response_time_tally = 0
+  @tickets.each do |ticket| 
+    
+    if(ticket.status == true)
+      @response_time_tally = @response_time_tally + (ticket.updated_at - ticket.created_at)
+    end
+
+  end
+
+  avg_response_time = (@response_time_tally / gon.closed_tickets) 
+
+
+
+
+t = avg_response_time
+mm, ss = t.divmod(60)            #=> [4515, 21]
+hh, mm = mm.divmod(60)           #=> [75, 15]
+dd, hh = hh.divmod(24)           #=> [3, 3]
+gon.avg_response_time = "%d days, %d hours, %d minutes and %d seconds" % [dd, hh, mm, ss]
+#=> 3 days, 3 hours, 15 minutes and 21 seconds
+
+
+
+end
+
+
+
+
+
 
 
 
