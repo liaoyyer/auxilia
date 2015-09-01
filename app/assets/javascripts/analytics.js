@@ -212,7 +212,7 @@ $('#area_chart_container').highcharts({
 
 
 
-        alert(gon.month_interval);
+
 
 
 
