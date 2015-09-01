@@ -256,7 +256,7 @@ end
 
 def analyze_yearly_ticket_activity
 
-
+  require 'date'
 
   gon.monthly_created_activity = []
   gon.monthly_closed_activity = []
@@ -271,12 +271,12 @@ def analyze_yearly_ticket_activity
 
 
  #collect data on the past 12 months up to the last completed month
-  @date_index = (DateTime.now - 13.months)
-  gon.month_interval = 
+  @date_index = (DateTime.now - 12.months)
+  gon.month_interval = []
 
-  ((DateTime.now - 13.months).month .. (DateTime.now - 1.month).month).each do |m|
-    gon.month_interval << DATE::MONTHNAMES[m]
-  end
+
+
+
 
 
 
@@ -285,7 +285,7 @@ def analyze_yearly_ticket_activity
     @monthly_created_tally = @monthly_closed_tally = 0
 
 
-
+    gon.month_interval << DateTime::ABBR_MONTHNAMES[@date_index.month]
 
     @tickets.each do |ticket|
       if (ticket.created_at.month == @date_index.month)
@@ -313,8 +313,6 @@ def analyze_yearly_ticket_activity
 
 
 
-
-  gon.month_interval = []
 
 
 
