@@ -288,11 +288,11 @@ def analyze_yearly_ticket_activity
     gon.month_interval << DateTime::ABBR_MONTHNAMES[@date_index.month]
 
     @tickets.each do |ticket|
-      if (ticket.created_at.month == @date_index.month)
+      if (ticket.created_at.month == @date_index.month) && (ticket.created_at.year == @date_index.year)
          @monthly_created_tally += 1
       end
 
-      if (ticket.status == true) && (ticket.updated_at.month == @date_index.month)
+      if (ticket.status == true) && (ticket.updated_at.month == @date_index.month) && (ticket.updated_at.year == @date_index.year)
          @monthly_closed_tally += 1
       end
     end # end of ticket loop
