@@ -270,8 +270,8 @@ def analyze_yearly_ticket_activity
 
 
 
-  # starting 1 year ago (12months ago)
-  @date_index = (DateTime.now - 1.year)
+ #collect data on the past 12 months up to the last completed month
+  @date_index = (DateTime.now - 13.months)
 
   @month_index = 1
 
