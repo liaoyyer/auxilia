@@ -498,15 +498,13 @@ def analyze_admins
   gon.admin_counts = Array.new
 
 
-  @admin_performance = Ticket.where(status: true).group(:admin_id).count
+  @admin_performance = Ticket.where(status: true).order(admin_id: :asc).group(:admin_id).count
 
 
   @admin_performance.each do |admin_id, count| 
     gon.admins << admin_id
     gon.admin_counts << count
   end
-
-
 
 
 
