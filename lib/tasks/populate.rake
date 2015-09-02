@@ -11,12 +11,12 @@ namespace :db do
     [Ticket, User].each(&:delete_all)
 
 
-    User.populate 500 do |user|
+    User.populate 5 do |user|
       user.email   = Faker::Internet.email
       user.encrypted_password = User.new(:password => password).encrypted_password
 
 
-      Ticket.populate 0..4 do |ticket|
+      Ticket.populate 0..2 do |ticket|
         ticket.user_id = user.id
         ticket.title = Populator.words(2..4).titleize
         ticket.description = Populator.sentences(2..20)
