@@ -172,8 +172,8 @@ $('#area_chart_container').highcharts({
             name: 'created',
             data: gon.monthly_created_activity
         }, {
-            name: 'closed',
-            data: gon.monthly_closed_activity
+            name: 'resolved',
+            data: gon.monthly_resolved_activity
         }
 
 
@@ -200,8 +200,90 @@ $('#area_chart_container').highcharts({
 
 
     $('#total_tickets').html(gon.total_tickets)
-    $('#closed_tickets').html(gon.closed_tickets)
-    $('#avg_response_time').html(gon.avg_response_time)
+    $('#resolved_tickets').html(gon.resolved_tickets)
+    $('#avg_resolution_time').html(gon.avg_resolution_time)
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+ $('#admin_bar_chart_container').highcharts({
+        chart: {
+            type: 'bar'
+        },
+        title: {
+            text: 'Admin Performance'
+        },
+        xAxis: {
+            categories: gon.admins,
+            title: {
+                text: 'Admins by ID'
+            }        
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Resolved Tickets',
+                align: 'high'
+            },
+            labels: {
+                overflow: 'justify'
+            }
+
+        },
+        plotOptions: {
+           bar: {
+                dataLabels: {
+                    enabled: true
+                }
+            }
+        },
+        legend: {
+            enabled: false,
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'top',
+            x: -40,
+            y: 80,
+            floating: true,
+            borderWidth: 1,
+            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+            shadow: true
+        },
+        
+
+
+
+        series: [{
+            name: "Tickets resolved",
+            colorByPoint: true,
+            data: gon.admin_counts
+        }],
+
+
+
+
+});
+
+
+
+
+
+
+
+
 
 
 

@@ -107,7 +107,7 @@ class AdminDashboardController < ApplicationController
     analyze_ticket_status
     analyze_yearly_ticket_activity
     analyze_categories
-    #analyze_admins
+    analyze_admins
 
   end
 
@@ -197,13 +197,13 @@ class AdminDashboardController < ApplicationController
 
 def analyze_ticket_status
 
-  @closed_tally = @in_progress_tally = @open_tally = 0
+  @resolved_tally = @in_progress_tally = @open_tally = 0
 
 
   @tickets.each do |ticket| 
     case ticket.status
       when true
-        @closed_tally += 1
+        @resolved_tally += 1
       when false
         @in_progress_tally += 1
       else
@@ -217,8 +217,8 @@ def analyze_ticket_status
 
 
   gon.status_data = [{
-                    name: "Closed",
-                    y: @closed_tally
+                    name: "Resolved",
+                    y: @resolved_tally
                 }, {
                     name: "In Progress",
                     y: @in_progress_tally
@@ -259,12 +259,12 @@ def analyze_yearly_ticket_activity
   require 'date'
 
   gon.monthly_created_activity = []
-  gon.monthly_closed_activity = []
+  gon.monthly_resolved_activity = []
 
 
 
   @monthly_created_activity = []
-  @monthly_closed_activity = []
+  @monthly_resolved_activity = []
 
   
 
@@ -282,7 +282,7 @@ def analyze_yearly_ticket_activity
 
   @month_index = 1
   while @month_index <= 12
-    @monthly_created_tally = @monthly_closed_tally = 0
+    @monthly_created_tally = @monthly_resolved_tally = 0
 
 
     gon.month_interval << DateTime::ABBR_MONTHNAMES[@date_index.month]
@@ -293,14 +293,14 @@ def analyze_yearly_ticket_activity
       end
 
       if (ticket.status == true) && (ticket.updated_at.month == @date_index.month) && (ticket.updated_at.year == @date_index.year)
-         @monthly_closed_tally += 1
+         @monthly_resolved_tally += 1
       end
     end # end of ticket loop
 
 
 
     gon.monthly_created_activity << @monthly_created_tally
-    gon.monthly_closed_activity << @monthly_closed_tally
+    gon.monthly_resolved_activity << @monthly_resolved_tally
 
 
     # increment indexes to iterate through 12 months of data
@@ -427,18 +427,18 @@ end
 
 def get_ticket_data
   gon.total_tickets = Ticket.count
-  gon.closed_tickets = Ticket.where(status: true).count
+  gon.resolved_tickets = Ticket.where(status: true).count
 
 
 
 
 
 
-  @response_time_tally = 0
+  @total_resolution_time = 0
   @tickets.each do |ticket| 
     
     if(ticket.status == true)
-      @response_time_tally = @response_time_tally + (ticket.updated_at - ticket.created_at)
+      @total_resolution_time = @total_resolution_time + (ticket.updated_at - ticket.created_at)
     end
 
   end
@@ -448,7 +448,7 @@ def get_ticket_data
 
 
 
-  gon.avg_response_time = "%.2f hrs" % ( (@response_time_tally / gon.closed_tickets) / 3600)
+  gon.avg_resolution_time = "%.2f hrs" % ( (@total_resolution_time / gon.resolved_tickets) / 3600)
 
 
 
@@ -466,7 +466,35 @@ end
 
 
 
+def analyze_admins
 
+
+
+  # query = "SELECT admin_id, COUNT(*) FROM tickets WHERE status = true GROUP BY admin_id;"
+
+
+
+
+
+  gon.admins = Array.new
+  gon.admin_counts = Array.new
+
+
+  @admin_performance = Ticket.where(status: true).group(:admin_id).count
+
+
+  @admin_performance.each do |admin_id, count| 
+    gon.admins << admin_id
+    gon.admin_counts << count
+  end
+
+
+
+
+
+
+
+end
 
 
 
