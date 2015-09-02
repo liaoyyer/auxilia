@@ -201,6 +201,7 @@ $('#area_chart_container').highcharts({
 
     $('#total_tickets').html(gon.total_tickets)
     $('#resolved_tickets').html(gon.resolved_tickets)
+    $('#avg_initial_response_time').html(gon.avg_initial_response_time)
     $('#avg_resolution_time').html(gon.avg_resolution_time)
 
 

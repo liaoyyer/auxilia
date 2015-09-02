@@ -51,6 +51,10 @@
   <br>
 
 
+  <% if @ticket.initial_response_time == nil %>
+  <%= f.hidden_field :initial_response_time, :value => DateTime.now %>
+  <% end %>
+
   <div class="actions">
     <%= f.submit "Resolve Ticket", class: "btn btn-success" %>
   </div>

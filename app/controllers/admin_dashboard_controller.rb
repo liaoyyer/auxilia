@@ -51,7 +51,7 @@ class AdminDashboardController < ApplicationController
     @ticket.admin_id = current_admin.id 
     respond_to do |format|
       if @ticket.update(ticket_params)
-        format.html { redirect_to show_admin_path, notice: 'Ticket was successfully updated.' }
+        format.html { redirect_to show_admin_path, notice: 'Ticket was successfully updated by admin.' }
         format.json { render :show, status: :ok, location: @ticket }
       else
         format.html { render :edit }
@@ -428,6 +428,7 @@ end
 def get_ticket_data
   gon.total_tickets = Ticket.count
   gon.resolved_tickets = Ticket.where(status: true).count
+  gon.in_progress_tickets = Ticket.where(status: false).count
 
 
 
@@ -444,11 +445,28 @@ def get_ticket_data
   end
 
 
-
-
-
-
   gon.avg_resolution_time = "%.2f hrs" % ( (@total_resolution_time / gon.resolved_tickets) / 3600)
+
+
+
+
+
+  @total_initial_response_time = 0
+  @tickets.each do |ticket| 
+    
+    if(ticket.status == true || ticket.status == false)
+      @total_initial_response_time = @total_initial_response_time + (ticket.initial_response_time - ticket.created_at)
+    end
+
+  end
+
+
+  gon.avg_initial_response_time = "%.2f hrs" % ( (@total_initial_response_time / (gon.resolved_tickets + gon.in_progress_tickets) / 3600) )
+
+
+
+
+
 
 
 

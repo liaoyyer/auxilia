@@ -42,12 +42,12 @@ namespace :db do
 
 
 
-        
 
 
 
         if ticket.status == false || ticket.status == true
           ticket.admin_id = 1..5
+          ticket.initial_response_time = (ticket.created_at..ticket.updated_at)
         end
 
 
