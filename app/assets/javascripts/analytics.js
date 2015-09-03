@@ -225,7 +225,7 @@ $('#area_chart_container').highcharts({
             type: 'bar'
         },
         title: {
-            text: 'Admin Performance'
+            text: 'Tickets Resolved by Admin'
         },
         xAxis: {
             categories: gon.admins,
@@ -280,6 +280,72 @@ $('#area_chart_container').highcharts({
 
 
 
+
+
+
+
+
+
+
+
+
+ $('#admin_resolution_times_bar_chart_container').highcharts({
+        chart: {
+            type: 'bar'
+        },
+        title: {
+            text: 'Average Resolution Times by Admin'
+        },
+        xAxis: {
+            categories: gon.admins,
+            title: {
+                text: 'Admins by ID'
+            }        
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Resolution Time (hours)',
+                align: 'high'
+            },
+            labels: {
+                overflow: 'justify'
+            }
+
+        },
+        plotOptions: {
+           bar: {
+                dataLabels: {
+                    enabled: true
+                }
+            }
+        },
+        legend: {
+            enabled: false,
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'top',
+            x: -40,
+            y: 80,
+            floating: true,
+            borderWidth: 1,
+            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+            shadow: true
+        },
+        
+
+
+
+        series: [{
+            name: "Resolution Times",
+            colorByPoint: true,
+            data: gon.avg_admin_resolution_times
+        }],
+
+
+
+
+});
 
 
 

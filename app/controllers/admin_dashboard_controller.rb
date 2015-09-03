@@ -498,6 +498,7 @@ def analyze_admins
   gon.admin_counts = Array.new
 
 
+
   @admin_performance = Ticket.where(status: true).order(admin_id: :asc).group(:admin_id).count
 
 
@@ -508,6 +509,28 @@ def analyze_admins
 
 
 
+
+
+
+
+  # for each admin calulate the average resolution time
+  @total_admin_resolution_time = DateTime.new
+  @avg_admin_resolution_times = Array.new
+  
+
+  @admin_performance.each do |admin_id, count| 
+    @total_admin_resolution_time = 0 
+    @tickets.each do |ticket|
+      if ticket.admin_id == admin_id && ticket.status == true
+        @total_admin_resolution_time = @total_admin_resolution_time + (ticket.updated_at - ticket.created_at)
+      end      
+    end
+    @avg_admin_resolution_times << ((@total_admin_resolution_time / count) / 3600).round(2)
+  end
+
+
+
+  gon.avg_admin_resolution_times = @avg_admin_resolution_times
 
 
 end
