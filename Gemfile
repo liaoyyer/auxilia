@@ -54,6 +54,8 @@ gem 'gon'
 
 gem 'tinymce-rails'
 
+gem 'mailboxer'
+
 
 
 

@@ -70,7 +70,7 @@ jQuery(function(){
             type: 'column'
         },
         title: {
-            text: 'Current Ticket Data'
+            text: 'Current Ticket Totals'
         },
         xAxis: {
             type: 'category'
