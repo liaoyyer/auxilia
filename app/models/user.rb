@@ -6,7 +6,6 @@ class User < ActiveRecord::Base
 
   has_many :tickets
 
-
   acts_as_messageable
 
 
