@@ -4,8 +4,9 @@ class Admin < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-
   has_many :tickets
+
+  acts_as_messageable
 
 
 
