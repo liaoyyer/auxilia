@@ -87,6 +87,7 @@ GEM
       json
       multi_json
       request_store (>= 1.0)
+    gravatar_image_tag (1.2.0)
     hash-deep-merge (0.1.1)
     i18n (0.7.0)
     jbuilder (2.3.1)
@@ -212,6 +213,7 @@ DEPENDENCIES
   faker
   font-awesome-rails
   gon
+  gravatar_image_tag
   jbuilder (~> 2.0)
   jquery-datatables-rails (~> 3.3.0)
   jquery-rails
