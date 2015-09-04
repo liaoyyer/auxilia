@@ -54,7 +54,7 @@ gem 'gon'
 
 gem 'tinymce-rails'
 
-gem 'mailboxer'
+gem 'mailboxer', '~> 0.13.0'
 
 
 
