@@ -40,6 +40,10 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bootstrap-sass', '~> 3.3.5'
 gem 'autoprefixer-rails'
 
+gem 'bootstrap-will_paginate'
+gem 'will_paginate'
+
+
 gem 'font-awesome-rails'
 
 gem 'devise'
