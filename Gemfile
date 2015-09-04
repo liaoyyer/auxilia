@@ -16,13 +16,19 @@ gem 'coffee-rails', '~> 4.1.0'
 # gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
-gem 'jquery-rails'
+gem 'jquery-rails', '4.0.4'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
+
+
+gem 'compass-rails', '>= 2.0.4'
+
+
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -50,7 +56,7 @@ gem 'devise'
 
 gem 'pundit'
 
-gem 'jquery-datatables-rails', '~> 3.3.0'
+gem 'jquery-datatables-rails'
 
 gem 'lazy_high_charts'
 
@@ -60,6 +66,15 @@ gem 'tinymce-rails'
 
 gem 'mailboxer', '~> 0.13.0'
 gem 'gravatar_image_tag'
+
+gem 'chosen-rails'
+
+
+
+
+
+
+
 
 
 

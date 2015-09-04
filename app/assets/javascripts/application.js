@@ -12,6 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require chosen-jquery
+//= require messages
+//= require ImageSelect.jquery
 //= require dataTables/jquery.dataTables
 //= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
 //= require highcharts/highcharts

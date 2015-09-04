@@ -26,7 +26,27 @@ Rails.application.routes.draw do
   devise_for :admins, controllers: { sessions: "admins/sessions", passwords: "admins/passwords", registrations: "admins/registrations" }
 
 
-  resources :conversations, only: [:index, :show, :destroy]
+
+
+
+
+
+  resources :conversations, only: [:index, :show, :destroy] do
+    member do
+      post :reply
+      post :restore
+      post :mark_as_read
+    end
+    collection do
+      delete :empty_trash
+    end
+  end
+  resources :messages, only: [:new, :create]
+
+
+
+
+
 
 
 
