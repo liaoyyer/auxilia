@@ -6,7 +6,7 @@ def page_header(text)
 end
 
 
-def gravatar_for(user, size = 30, title = user.name)
+def gravatar_for(user, size = 30, title = user.firstname)
   image_tag gravatar_image_url(user.email, size: size), title: title, class: 'img-rounded'
 end
 

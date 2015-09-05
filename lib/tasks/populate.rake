@@ -12,6 +12,8 @@ namespace :db do
 
 
     User.populate 500 do |user|
+      user.firstname = Faker::Name.first_name
+      user.lastname = Faker::Name.last_name
       user.email   = Faker::Internet.email
       user.encrypted_password = User.new(:password => password).encrypted_password
 

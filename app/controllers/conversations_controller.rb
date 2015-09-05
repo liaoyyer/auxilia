@@ -1,5 +1,6 @@
 class ConversationsController < ApplicationController
   before_action :authenticate_access
+  before_action :set_roletype
   before_action :get_mailbox
   before_action :get_conversation, except: [:index, :empty_trash]
   before_action :get_box, only: [:index]
@@ -20,41 +21,50 @@ class ConversationsController < ApplicationController
   end
 
   def mark_as_read
-    @conversation.mark_as_read(current_user)
+    @conversation.mark_as_read(@roletype)
     flash[:success] = 'The conversation was marked as read.'
     redirect_to conversations_path
   end
 
   def reply
-    current_user.reply_to_conversation(@conversation, params[:body])
+    @roletype.reply_to_conversation(@conversation, params[:body])
     flash[:success] = 'Reply sent'
     redirect_to conversation_path(@conversation)
   end
 
   def destroy
-    @conversation.move_to_trash(current_user)
+    @conversation.move_to_trash(@roletype)
     flash[:success] = 'The conversation was moved to trash.'
     redirect_to conversations_path
   end
 
   def restore
-    @conversation.untrash(current_user)
+    @conversation.untrash(@roletype)
     flash[:success] = 'The conversation was restored.'
     redirect_to conversations_path
   end
 
   def empty_trash
     @mailbox.trash.each do |conversation|
-      conversation.receipts_for(current_user).update_all(deleted: true)
+      conversation.receipts_for(@roletype).update_all(deleted: true)
     end
     flash[:success] = 'Your trash was cleaned!'
     redirect_to conversations_path
   end
 
+
+
+
+
+
+
+
+
+
   private
 
   def get_mailbox
-    @mailbox ||= current_user.mailbox
+    @mailbox ||= @roletype.mailbox
   end
 
   def get_conversation
@@ -67,4 +77,28 @@ class ConversationsController < ApplicationController
     end
     @box = params[:box]
   end
+
+
+
+  def set_roletype
+    if user_signed_in?
+      @roletype = current_user
+    elsif admin_signed_in? 
+      @roletype = current_admin
+    end
+  end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 end

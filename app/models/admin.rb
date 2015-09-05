@@ -10,4 +10,16 @@ class Admin < ActiveRecord::Base
 
 
 
+
+
+
+
+
+  def mailboxer_email(object)
+ 	email
+  end
+
+
+
+
 end
