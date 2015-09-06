@@ -452,6 +452,9 @@ def get_ticket_data
 
 
   @total_initial_response_time = 0
+  gon.avg_initial_response_time = 0
+
+
   @tickets.each do |ticket| 
     
     if(ticket.status == true || ticket.status == false)
@@ -461,8 +464,11 @@ def get_ticket_data
   end
 
 
-  gon.avg_initial_response_time = "%.2f hrs" % ( (@total_initial_response_time / (gon.resolved_tickets + gon.in_progress_tickets) / 3600) )
-
+  if @total_initial_response_time != 0
+    gon.avg_initial_response_time = "%.2f hrs" % ( (@total_initial_response_time / (gon.resolved_tickets + gon.in_progress_tickets) / 3600) )
+  else
+    gon.avg_initial_response_time = 0
+  end
 
 
 
