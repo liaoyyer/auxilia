@@ -163,7 +163,7 @@ class AdminDashboardController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def ticket_params
-      params.require(:ticket).permit(:title, :description, :category, :status, :solution)
+      params.require(:ticket).permit(:title, :description, :category, :status, :solution, :initial_response_time)
     end
 
 
