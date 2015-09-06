@@ -4,7 +4,6 @@ class MessagesController < ApplicationController
 
   def new
     @chosen_recipient = User.find_by(id: params[:to].to_i) if params[:to]
-    #@chosen_admin_recipient = Admin.find_by(id: params[:to].to_i) if params[:to]
   end
 
 
@@ -13,7 +12,6 @@ class MessagesController < ApplicationController
 
   def create
     recipients = User.where(id: params['recipients'])
-    #admin_recipients = Admin.where(id: params['recipients'])
 
     conversation = @roletype.send_message(recipients, params[:message][:body], params[:message][:subject]).conversation
     flash[:success] = "Message has been sent!"

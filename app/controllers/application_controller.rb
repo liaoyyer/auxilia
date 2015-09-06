@@ -6,6 +6,14 @@ class ApplicationController < ActionController::Base
 
 
 
+  layout :layout_by_resource
+
+
+
+
+
+
+
   rescue_from ActiveRecord::RecordNotFound do
     flash[:warning] = 'Resource not found.'
     redirect_back_or root_path
@@ -79,7 +87,7 @@ end
 
   def set_type
 
-    
+
 
   end
 
@@ -92,17 +100,34 @@ end
 
   protected
 
+
+
+def layout_by_resource
+  if devise_controller? && resource_name == :user
+    'userlogin'
+  elsif devise_controller? && resource_name == :admin 
+    'adminlogin'
+  else
+    'application'
+  end
+end
+
+
+
+
+
+
+
+
+
+
+
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) << :firstname
     devise_parameter_sanitizer.for(:sign_up) <<:lastname
     devise_parameter_sanitizer.for(:account_update) << :firstname
     devise_parameter_sanitizer.for(:account_update) << :lastname
   end
-
-
-
-
-
 
 
 
