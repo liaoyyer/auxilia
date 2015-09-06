@@ -103,6 +103,13 @@ class AdminDashboardController < ApplicationController
 
   def analytics
     get_tickets
+
+
+    if @tickets.empty?
+      redirect_to '/'
+    end
+
+
     get_ticket_data
     analyze_ticket_status
     analyze_yearly_ticket_activity
@@ -169,7 +176,8 @@ class AdminDashboardController < ApplicationController
 
 	def get_tickets
 		@tickets = Ticket.all
-	end
+
+  end
 
 
 
@@ -426,6 +434,8 @@ end
 
 
 def get_ticket_data
+
+
   gon.total_tickets = Ticket.count
   gon.resolved_tickets = Ticket.where(status: true).count
   gon.in_progress_tickets = Ticket.where(status: false).count
