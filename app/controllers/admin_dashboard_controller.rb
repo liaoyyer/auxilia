@@ -104,7 +104,7 @@ class AdminDashboardController < ApplicationController
   def analytics
     get_tickets
 
-
+    # redirect if there are no tickets to analyze
     if @tickets.empty?
       redirect_to '/'
     end
