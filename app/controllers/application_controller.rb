@@ -58,15 +58,30 @@ class ApplicationController < ActionController::Base
 
 
 
-
-
-
-
-
-
 def redirect_back_or(path)
   redirect_to request.referer || path
 end
+
+
+
+
+  def set_roletype
+    if user_signed_in?
+      @roletype = current_user
+    elsif admin_signed_in? 
+      @roletype = current_admin
+    end
+  end
+
+
+
+
+
+  def set_type
+
+    
+
+  end
 
 
 

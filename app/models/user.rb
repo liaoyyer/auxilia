@@ -6,9 +6,27 @@ class User < ActiveRecord::Base
 
   has_many :tickets
 
+  before_create :set_default_type
+
+
+
+
+
+
+
+
+
+
   acts_as_messageable
 
 
+
+
+
+
+  def set_default_type
+    self.type = self.class.name if type.blank?
+  end
 
 
 
@@ -18,4 +36,22 @@ class User < ActiveRecord::Base
  end
 
 
+
+
+
+
+
+
 end
+
+
+
+
+
+
+
+
+
+  
+
+

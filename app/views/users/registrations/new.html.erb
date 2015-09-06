@@ -16,7 +16,6 @@
   <%= devise_error_messages! %>
 
 
-
   <div class="field">
     <%= f.label :firstname %>
     <%= f.text_field :firstname, autofocus: true, :class => "fullfield" %>
@@ -26,7 +25,6 @@
     <%= f.label :lastname %>
     <%= f.text_field :lastname, :class => "fullfield" %>
   </div>
-
 
   <div class="field">
     <%= f.label :email %><br />
@@ -46,11 +44,18 @@
     <%= f.password_field :password_confirmation, autocomplete: "off", :class => "fullfield" %>
   </div>
 
+
+
+
+
+
+
   <div class="actions">
     <%= button_tag(type: 'submit', class: "btn btn-primary btn-sm fullfield") do %>
         <i class="fa fa-pencil-square"></i> Sign Up 
     <% end %>
   </div>
+
 
 <% end %>
 
