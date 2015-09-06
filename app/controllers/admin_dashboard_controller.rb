@@ -176,7 +176,6 @@ class AdminDashboardController < ApplicationController
 
 	def get_tickets
 		@tickets = Ticket.all
-
   end
 
 
@@ -474,10 +473,9 @@ def get_ticket_data
   end
 
 
-  if @total_initial_response_time != 0
+  # unless responses have yet to be made calculate average initial response time
+  if @total_initial_response_time != 0 
     gon.avg_initial_response_time = "%.2f hrs" % ( (@total_initial_response_time / (gon.resolved_tickets + gon.in_progress_tickets) / 3600) )
-  else
-    gon.avg_initial_response_time = 0
   end
 
 
