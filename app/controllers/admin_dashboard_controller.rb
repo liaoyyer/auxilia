@@ -442,44 +442,39 @@ def get_ticket_data
 
 
 
-
-
-  @total_resolution_time = 0
-  @tickets.each do |ticket| 
-    
-    if(ticket.status == true)
-      @total_resolution_time = @total_resolution_time + (ticket.updated_at - ticket.created_at)
+  # unless there are no resolved tickets to analyze, do calculations
+  unless gon.resolved_tickets == 0
+    @total_resolution_time = 0
+    @tickets.each do |ticket| 
+      if(ticket.status == true)
+        @total_resolution_time = @total_resolution_time + (ticket.updated_at - ticket.created_at)
+      end
     end
-
+    gon.avg_resolution_time = "%.2f hrs" % ( (@total_resolution_time / gon.resolved_tickets) / 3600)
   end
 
 
-  gon.avg_resolution_time = "%.2f hrs" % ( (@total_resolution_time / gon.resolved_tickets) / 3600)
+
+  # unless responses have yet to be made, do calculations
+  unless gon.resolved_tickets == 0 && gon.in_progress_tickets == 0
+    @total_initial_response_time = 0
+    gon.avg_initial_response_time = 0
 
 
-
-
-
-  @total_initial_response_time = 0
-  gon.avg_initial_response_time = 0
-
-
-  @tickets.each do |ticket| 
+    @tickets.each do |ticket| 
     
-    if(ticket.status == true || ticket.status == false)
-      @total_initial_response_time = @total_initial_response_time + (ticket.initial_response_time - ticket.created_at)
+      if(ticket.status == true || ticket.status == false)
+        @total_initial_response_time = @total_initial_response_time + (ticket.initial_response_time - ticket.created_at)
+      end
+
     end
 
-  end
 
 
-  # unless responses have yet to be made calculate average initial response time
-  if @total_initial_response_time != 0 
     gon.avg_initial_response_time = "%.2f hrs" % ( (@total_initial_response_time / (gon.resolved_tickets + gon.in_progress_tickets) / 3600) )
+
+
   end
-
-
-
 
 
 
