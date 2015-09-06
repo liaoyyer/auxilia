@@ -499,7 +499,7 @@ def analyze_admins
 
 
 
-  @admin_performance = Ticket.where(status: true).order(admin_id: :asc).group(:admin_id).count
+  @admin_performance = @tickets.where(status: true).order(admin_id: :asc).group(:admin_id).count
 
 
   @admin_performance.each do |admin_id, count| 

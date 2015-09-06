@@ -11,6 +11,22 @@ namespace :db do
     [Ticket, User].each(&:delete_all)
 
 
+
+
+    Admin.populate 5 do |admin|
+      admin.firstname = Faker::Name.first_name
+      admin.lastname = Faker::Name.last_name
+      admin.email   = Faker::Internet.email
+      admin.encrypted_password = Admin.new(:password => password).encrypted_password
+
+    end
+
+    admin_ids = Array.new
+    admin_ids = Admin.pluck(:id)
+
+
+
+
     User.populate 500 do |user|
       user.firstname = Faker::Name.first_name
       user.lastname = Faker::Name.last_name
@@ -47,12 +63,12 @@ namespace :db do
 
 
 
-        if ticket.status == false || ticket.status == true
-          ticket.admin_id = 1..5
-          ticket.initial_response_time = (ticket.created_at..ticket.updated_at)
-        end
 
 
+          if ticket.status == false || ticket.status == true
+            ticket.admin_id = admin_ids.sample
+            ticket.initial_response_time = (ticket.created_at..ticket.updated_at)
+          end
 
 
 
@@ -61,6 +77,27 @@ namespace :db do
       end
 
     end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
