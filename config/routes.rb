@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'chat/index'
+
   resources :tickets
 
   get 'admin_dashboard', to: 'admin_dashboard#index'
@@ -9,6 +11,16 @@ Rails.application.routes.draw do
   delete 'admin_dashboard/:id/destroy', to: 'admin_dashboard#destroy', :as => 'destroy_ticket'
   get 'admin_dashboard/:id/show', to: 'admin_dashboard#show', :as => 'show_admin'
   
+  get 'chat', to: 'chat#index'
+
+
+
+
+
+
+
+
+
   devise_for :users, controllers: { sessions: "users/sessions", passwords: "users/passwords", registrations: "users/registrations" }
 
   devise_scope :user do
