@@ -11,6 +11,9 @@ class TicketsController < ApplicationController
   # restrict access to users and admins only
   before_action :authenticate_access
 
+  before_action :set_app_usr
+  before_action :get_mailbox
+
   before_action :set_ticket, only: [:show, :edit, :update, :destroy]
 
 

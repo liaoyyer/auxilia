@@ -17,122 +17,28 @@
 
 
 
+          <% if user_signed_in? && current_page?('/') %>
+
+            <li class="dropdown">
 
 
+          <%= link_to conversations_path, :class => "dropdown-toggle", :'data-close-others' => "true", :'data-hover' => "dropdown", :'data-toggle' => "dropwdown" do %>
+                <i class="fa fa-envelope">
+                  <% @unread_count= @mailbox.inbox(:read => false).count(:id, :distinct => true) %>
+                  <% if @unread_count > 0 %>
+                  <span class="badge"><%= @unread_count %></span>
+                  <% end %>
+                </i>
+          <% end %>
 
-
-          <% if user_signed_in? %>
-
-
-
-
-
-
-
-
-<li class="dropdown">
-              <a class="dropdown-toggle" data-close-others="true" data-hover="dropdown" data-toggle="dropdown" href="#">
-                <i class="fa fa-envelope"></i>
-                <!-- <span class="badge"></span> -->
-              </a>
-              <ul class="dropdown-menu posts">
-                <li>
-                  <span class="dropdown-menu-title"> You have 9 messages</span>
-                </li>
-                <li>
-                  <div class="drop-down-wrapper ps-container">
-                    <ul>
-                      <li>
-                        <a href="javascript:;">
-                          <div class="clearfix">
-                            <div class="thread-image">
-                              <img alt="" src="./assets/images/avatar-2.jpg">
-                            </div>
-                            <div class="thread-content">
-                              <span class="author">Nicole Bell</span>
-                              <span class="preview">Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</span>
-                              <span class="time"> Just Now</span>
-                            </div>
-                          </div>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="javascript:;">
-                          <div class="clearfix">
-                            <div class="thread-image">
-                              <img alt="" src="./assets/images/avatar-1.jpg">
-                            </div>
-                            <div class="thread-content">
-                              <span class="author">Peter Clark</span>
-                              <span class="preview">Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</span>
-                              <span class="time">2 mins</span>
-                            </div>
-                          </div>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="javascript:;">
-                          <div class="clearfix">
-                            <div class="thread-image">
-                              <img alt="" src="./assets/images/avatar-3.jpg">
-                            </div>
-                            <div class="thread-content">
-                              <span class="author">Steven Thompson</span>
-                              <span class="preview">Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</span>
-                              <span class="time">8 hrs</span>
-                            </div>
-                          </div>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="javascript:;">
-                          <div class="clearfix">
-                            <div class="thread-image">
-                              <img alt="" src="./assets/images/avatar-1.jpg">
-                            </div>
-                            <div class="thread-content">
-                              <span class="author">Peter Clark</span>
-                              <span class="preview">Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</span>
-                              <span class="time">9 hrs</span>
-                            </div>
-                          </div>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="javascript:;">
-                          <div class="clearfix">
-                            <div class="thread-image">
-                              <img alt="" src="./assets/images/avatar-5.jpg">
-                            </div>
-                            <div class="thread-content">
-                              <span class="author">Kenneth Ross</span>
-                              <span class="preview">Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</span>
-                              <span class="time">14 hrs</span>
-                            </div>
-                          </div>
-                        </a>
-                      </li>
-                    </ul>
-                  <div class="ps-scrollbar-x-rail" style="width: 270px; display: none; left: 0px; bottom: 3px;"><div class="ps-scrollbar-x" style="left: 0px; width: 0px;"></div></div><div class="ps-scrollbar-y-rail" style="top: 0px; height: 250px; display: none; right: 3px;"><div class="ps-scrollbar-y" style="top: 0px; height: 0px;"></div></div></div>
-                </li>
-                <li class="view-all">
-                  <a href="pages_messages.html">
-                    See all messages <i class="fa fa-arrow-circle-o-right"></i>
-                  </a>
-                </li>
-              </ul>
             </li>
 
 
-
-            <% end %>
-
+          <% end %>
 
 
 
-
-
-
+  
 
 
 
