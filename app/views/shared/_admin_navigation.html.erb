@@ -16,7 +16,45 @@
     <ul class="nav navbar-nav navbar-right">
 
 
-          <% if admin_signed_in? && current_page?(:controller => 'admin_dashboard', :action => 'index') %>
+          <% if admin_signed_in? %>
+
+
+
+            <li class="dropdown">
+
+          <%= link_to '#', :class => "dropdown-toggle", :'data-close-others' => "true", :'data-hover' => "dropdown", :'data-toggle' => "dropwdown" do %>
+                <i class="fa fa-list">
+                  <!-- <% @unread_count= @mailbox.inbox(:read => false).count(:id, :distinct => true) %>
+                  <% if @unread_count > 0 %>
+                  <span class="badge"><%= @unread_count %></span>
+                  <% end %> -->
+                </i>
+          <% end %>
+
+            </li>
+
+
+
+
+
+            <li class="dropdown">
+
+          <%= link_to '#', :class => "dropdown-toggle", :'data-close-others' => "true", :'data-hover' => "dropdown", :'data-toggle' => "dropwdown" do %>
+                <i class="fa fa-bell">
+                  <!-- <% @unread_count= @mailbox.inbox(:read => false).count(:id, :distinct => true) %>
+                  <% if @unread_count > 0 %>
+                  <span class="badge"><%= @unread_count %></span>
+                  <% end %> -->
+                </i>
+          <% end %>
+
+            </li>
+
+
+
+
+
+
 
             <li class="dropdown">
 
@@ -47,9 +85,9 @@
           <% if admin_signed_in? %>
                 <li><%= link_to "Home", admin_dashboard_path %></li>
 
-                <% if @tickets.present? %>
+
                   <li><%= link_to "Analysis", admin_dashboard_analytics_path %></li>
-                <% end %>
+
 
                 <li><%= link_to 'Your Conversations', conversations_path %></li>
                 <li><%= link_to "Admin Logout", destroy_admin_session_path, method: :delete %></li>

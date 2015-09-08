@@ -8,7 +8,8 @@ class ApplicationController < ActionController::Base
 
   layout :layout_by_resource
 
-
+  before_action :set_app_usr
+  before_action :get_mailbox
 
 
 
@@ -85,7 +86,9 @@ end
 
 
   def get_mailbox
-    @mailbox ||= @current_app_usr.mailbox
+    if user_signed_in? || admin_signed_in?
+      @mailbox ||= @current_app_usr.mailbox
+    end
   end
 
 

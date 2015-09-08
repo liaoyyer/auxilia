@@ -7,8 +7,7 @@ class AdminDashboardController < ApplicationController
 	before_action :authenticate_admin
 
 
-  before_action :set_app_usr
-  before_action :get_mailbox
+
 
 
 
