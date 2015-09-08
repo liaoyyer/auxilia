@@ -14,6 +14,32 @@
     </div>
 
     <ul class="nav navbar-nav navbar-right">
+
+
+          <% if admin_signed_in? && current_page?(:controller => 'admin_dashboard', :action => 'index') %>
+
+            <li class="dropdown">
+
+
+          <%= link_to conversations_path, :class => "dropdown-toggle", :'data-close-others' => "true", :'data-hover' => "dropdown", :'data-toggle' => "dropwdown" do %>
+                <i class="fa fa-envelope">
+                  <% @unread_count= @mailbox.inbox(:read => false).count(:id, :distinct => true) %>
+                  <% if @unread_count > 0 %>
+                  <span class="badge"><%= @unread_count %></span>
+                  <% end %>
+                </i>
+          <% end %>
+
+            </li>
+
+
+          <% end %>
+
+
+
+
+
+
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Menu <span class="caret"></span></a>
         <ul class="dropdown-menu" role="menu">

@@ -12,6 +12,8 @@ end
 
 
 
-
+  def get_mailbox
+    @mailbox ||= @current_app_usr.mailbox
+  end
 
 end

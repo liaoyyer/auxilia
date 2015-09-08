@@ -10,7 +10,7 @@
 
   <div class="panel-body">
     <div class="messages">
-      <% @conversation.receipts_for(@roletype).each do |receipt| %>
+      <% @conversation.receipts_for(@current_app_usr).each do |receipt| %>
         <div class="media">
           <% message = receipt.message %>
           <div class="media-left">

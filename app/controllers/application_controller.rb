@@ -73,25 +73,20 @@ end
 
 
 
-  def set_roletype
+  def set_app_usr
     if user_signed_in?
-      @roletype = current_user
+      @current_app_usr = current_user
     elsif admin_signed_in? 
-      @roletype = current_admin
+      @current_app_usr = current_admin
     end
   end
 
 
 
 
-
-  def set_type
-
-
-
+  def get_mailbox
+    @mailbox ||= @current_app_usr.mailbox
   end
-
-
 
 
 
