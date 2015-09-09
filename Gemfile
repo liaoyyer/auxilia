@@ -69,7 +69,7 @@ gem 'gravatar_image_tag'
 
 gem 'chosen-rails'
 
-
+gem 'public_activity'
 
 
 
