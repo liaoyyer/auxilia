@@ -24,6 +24,37 @@ class User < ActiveRecord::Base
 
 
 
+
+
+
+
+
+
+
+	include PublicActivity::Model
+
+	tracked only: :create, owner: :itself
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   def set_default_type
     self.type = self.class.name if type.blank?
   end

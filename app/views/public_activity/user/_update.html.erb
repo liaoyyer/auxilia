@@ -1,10 +1,10 @@
 <li class="list-group-item">
-  <span class="glyphicon glyphicon-edit"></span>
+  <span class="glyphicon glyphicon-plus"></span>
   <small class="text-muted"><%= a.created_at.strftime('%H:%M:%S %-d %B %Y') %></small><br/>
   <strong><%= activity.owner ? activity.owner.firstname : 'Guest' %></strong>
   <% if a.trackable %>
-    edited ticket #<%= link_to a.trackable.id, ticket_path(a.trackable) %>
+    <%= a.trackable.firstname %>'s profile has been edited.
   <% else %>
-    edited a ticket and then deleted it.
+    A user's profile has been edited and subequently they were deleted.
   <% end %>
 </li>
