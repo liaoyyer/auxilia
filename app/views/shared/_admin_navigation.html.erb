@@ -130,8 +130,10 @@
                   <li><%= link_to "Analysis", admin_dashboard_analytics_path %></li>
 
                 <li><%= link_to 'Activity Feed', admin_dashboard_activity_path %></li>
-                <li><%= link_to 'Messagebox', conversations_path %></li>
-                <li><%= link_to "Admin Logout", destroy_admin_session_path, method: :delete %></li>
+                <li><%= link_to 'Inbox', conversations_path %></li>
+                <li><%= link_to 'Manage Users', '#' %></li>
+                <li><%= link_to 'Settings', '#' %></li>
+                <li><%= link_to "Logout", destroy_admin_session_path, method: :delete %></li>
           <% else %>
             <li><a href="/">User Login</a></li>
             <li><a href="/admins/sign_in">Admin Login</a></li>
