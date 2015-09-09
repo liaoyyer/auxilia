@@ -22,12 +22,9 @@
 
             <li class="dropdown">
 
-          <%= link_to '#', :class => "dropdown-toggle", :'data-close-others' => "true", :'data-hover' => "dropdown", :'data-toggle' => "dropwdown" do %>
+          <%= link_to '#', :class => "dropdown-toggle", :'data-close-others' => "true", :'data-hover' => "dropdown", :'data-toggle' => "dropdown" do %>
                 <i class="fa fa-list">
-                  <!-- <% @unread_count= @mailbox.inbox(:read => false).count(:id, :distinct => true) %>
-                  <% if @unread_count > 0 %>
-                  <span class="badge"><%= @unread_count %></span>
-                  <% end %> -->
+
                 </i>
           <% end %>
 
@@ -37,18 +34,62 @@
 
 
 
-            <li class="dropdown">
+<li class="dropdown">
 
-          <%= link_to '#', :class => "dropdown-toggle", :'data-close-others' => "true", :'data-hover' => "dropdown", :'data-toggle' => "dropwdown" do %>
+
+          <%= link_to admin_dashboard_activity_path, :class => "dropdown-toggle", :'data-close-others' => "true", :'data-hover' => "dropdown", :'data-toggle' => "dropdown" do %>
                 <i class="fa fa-bell">
-                  <!-- <% @unread_count= @mailbox.inbox(:read => false).count(:id, :distinct => true) %>
-                  <% if @unread_count > 0 %>
-                  <span class="badge"><%= @unread_count %></span>
-                  <% end %> -->
-                </i>
+                  <% if @activity_count > 0 %>
+                      <span class="badge"><%= @activity_count %></span>
+                  <% end %>
+                </i>                
           <% end %>
 
+
+
+
+
+
+              <ul class="dropdown-menu notifications">
+                <li>
+                  <span class="dropdown-menu-title">You have <%= @activity_count %> new notifications.</span>
+                </li>
+                <li>
+                  <div class="drop-down-wrapper ps-container">
+                    <ul>
+                        <%= render_activities @recent_activities %>
+                    </ul>
+                  </div>
+
+
+
+
+
+
+
+                </li>
+                <li class="view-all">
+
+                  <%= link_to admin_dashboard_activity_path do %> 
+                    See entire activity feed <i class="fa fa-arrow-circle-o-right"></i>
+                  <% end %>
+                </li>
+              </ul>
             </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -88,7 +129,7 @@
 
                   <li><%= link_to "Analysis", admin_dashboard_analytics_path %></li>
 
-
+                <li><%= link_to 'Activity Feed', admin_dashboard_activity_path %></li>
                 <li><%= link_to 'Messagebox', conversations_path %></li>
                 <li><%= link_to "Admin Logout", destroy_admin_session_path, method: :delete %></li>
           <% else %>

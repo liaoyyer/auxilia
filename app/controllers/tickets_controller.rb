@@ -11,9 +11,18 @@ class TicketsController < ApplicationController
   # restrict access to users and admins only
   before_action :authenticate_access
 
-
-
   before_action :set_ticket, only: [:show, :edit, :update, :destroy]
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -107,6 +116,31 @@ class TicketsController < ApplicationController
     end
   end
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_ticket
@@ -117,7 +151,6 @@ class TicketsController < ApplicationController
     def ticket_params
       params.require(:ticket).permit(:title, :description, :category, :user_id, :admin_id, :status, :solution, :initial_response_time)
     end
-
 
 
 

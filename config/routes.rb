@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   patch 'admin_dashboard/:id/', to: 'admin_dashboard#update'
   delete 'admin_dashboard/:id/destroy', to: 'admin_dashboard#destroy', :as => 'destroy_ticket'
   get 'admin_dashboard/:id/show', to: 'admin_dashboard#show', :as => 'show_admin'
-
+  get 'admin_dashboard/activity', to: 'admin_dashboard#activity'
 
 
 

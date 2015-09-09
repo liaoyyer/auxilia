@@ -4,6 +4,16 @@ class ConversationsController < ApplicationController
   before_action :get_conversation, except: [:index, :empty_trash]
   before_action :get_box, only: [:index]
 
+
+
+  
+
+
+
+  
+
+
+
   def index
     if @box.eql? "inbox"
       @conversations = @mailbox.inbox

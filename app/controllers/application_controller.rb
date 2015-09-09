@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  include PublicActivity::StoreController 
+
 
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
@@ -11,7 +13,7 @@ class ApplicationController < ActionController::Base
   before_action :set_app_usr
   before_action :get_mailbox
 
-
+  before_action :load_activity_info, if: :admin_signed_in?
 
 
 
@@ -90,6 +92,14 @@ end
       @mailbox ||= @current_app_usr.mailbox
     end
   end
+
+
+  def load_activity_info
+    @recent_activities = PublicActivity::Activity.order('created_at DESC').limit(5)
+    @activity_count = PublicActivity::Activity.count
+  end
+
+
 
 
 

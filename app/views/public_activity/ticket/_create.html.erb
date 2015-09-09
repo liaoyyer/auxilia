@@ -1,0 +1,10 @@
+<li class="list-group-item">
+  <span class="glyphicon glyphicon-plus"></span>
+  <small class="text-muted"><%= a.created_at.strftime('%H:%M:%S %-d %B %Y') %></small><br/>
+  <strong><%= activity.owner ? activity.owner.firstname : 'Guest' %></strong>
+  <% if a.trackable %>
+    added ticket #<%= link_to a.trackable.id, ticket_path(a.trackable) %>
+  <% else %>
+    added the ticket that is currently deleted.
+  <% end %>
+</li>

@@ -6,12 +6,13 @@ class AdminDashboardController < ApplicationController
 	# restrict access to admins only
 	before_action :authenticate_admin
 
-
-
-
-
-
 	before_action :set_ticket, only: [:show, :resolve, :update, :destroy]
+
+
+
+
+
+
 
 
 
@@ -131,7 +132,11 @@ class AdminDashboardController < ApplicationController
 
 
 
+def activity
 
+    @all_activities = PublicActivity::Activity.order('created_at DESC')
+
+end
 
 
 
@@ -569,6 +574,47 @@ end
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	# if signed in as user and trying to gain admin access, redirect to root
 	# else if not signed in as admin or user redirect to admin login
 	# (else if signed in as admin properly then allow access to admin_dashboard)
@@ -577,6 +623,13 @@ end
        		redirect_to new_admin_session_path
       end
   end
+
+
+
+
+
+
+
 
 
 
