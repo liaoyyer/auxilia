@@ -2,9 +2,6 @@ class TicketsController < ApplicationController
 
 
 
-  layout 'userlogin'
-
-
 
 
 
@@ -32,24 +29,19 @@ class TicketsController < ApplicationController
     @tickets = Ticket.all
   end
 
+
+
   # GET /tickets/1
   # GET /tickets/1.json
   def show
   end
 
+
+
   # GET /tickets/new
   def new
     @ticket = Ticket.new
   end
-
-
-
-
-
-
-
-
-
 
 
 
@@ -61,13 +53,6 @@ class TicketsController < ApplicationController
     end
 
   end
-
-
-
-
-
-
-
 
 
   # POST /tickets

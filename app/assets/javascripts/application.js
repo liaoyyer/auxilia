@@ -21,3 +21,6 @@
 //= require tinymce-jquery
 //= require turbolinks
 //= require bootstrap-sprockets
+//= require users
+//= require tickets
+//= require_tree .

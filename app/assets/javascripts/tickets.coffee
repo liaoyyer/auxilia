@@ -6,3 +6,4 @@
 jQuery  ->
 	$('#tickets').DataTable({autoWidth: true; "iDisplayLength": 25;})
 	$('a[rel~="tooltip"]').tooltip()
+	

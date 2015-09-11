@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'chat/index'
 
   resources :tickets
 
@@ -14,14 +13,16 @@ Rails.application.routes.draw do
 
 
 
+resources :admin_settings
 
 
 
 
 
+  devise_for :users, controllers: { sessions: "users/sessions", passwords: "users/passwords", registrations: "users/registrations" }, :path_prefix => 'u'
 
+  
 
-  devise_for :users, controllers: { sessions: "users/sessions", passwords: "users/passwords", registrations: "users/registrations" }
 
   devise_scope :user do
     authenticated :user do
@@ -31,6 +32,24 @@ Rails.application.routes.draw do
       root :to => 'users/sessions#new', as: :unauthenticated_user_root
     end
   end
+
+
+
+  
+  resources :users
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

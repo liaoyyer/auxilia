@@ -61,6 +61,18 @@ class ApplicationController < ActionController::Base
   end
 
 
+
+
+  def authenticate_admin
+      if !(admin_signed_in?)
+          redirect_to new_admin_session_path
+      end
+  end
+
+
+
+
+
   def authenticate_access
   	unless admin_signed_in? || user_signed_in?
   		redirect_to '/'

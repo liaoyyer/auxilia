@@ -12,3 +12,4 @@ Rails.application.config.assets.version = '1.0'
 
 Rails.application.config.assets.precompile += %w( tickets.js )
 Rails.application.config.assets.precompile += %w( analytics.js )
+Rails.application.config.assets.precompile += %w( users.js )

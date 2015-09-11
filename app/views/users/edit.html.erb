@@ -1,0 +1,44 @@
+<h2>Edit <%= resource_name.to_s.humanize %></h2>
+
+<%= form_for(@user) do |f| %>
+
+
+  <div class="field">
+    <%= f.label :id %><br>
+    <%= f.text_field :id, :readonly => true %>
+  </div>
+
+
+
+  <div class="field">
+    <%= f.label :firstname %>
+    <%= f.text_field :firstname, autofocus: true, :class => "fullfield" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :lastname %>
+    <%= f.text_field :lastname, :class => "fullfield" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Update" %>
+  </div>
+
+  
+<% end %>
+
+
+
+
+
+
+<h3>Delete Account</h3>
+
+<p><%= button_to "Delete Account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+
+<%= link_to "Back", :back %>

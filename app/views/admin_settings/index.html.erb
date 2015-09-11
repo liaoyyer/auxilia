@@ -1,0 +1,42 @@
+<h2>Admin Profile</h2>
+
+<%= form_for @admin, url: admin_setting_path(@admin), html: { method: :PATCH } do |f| %>
+
+
+  <div class="field">
+    <%= f.label :id %><br>
+    <%= f.text_field :id, :readonly => true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :firstname %>
+    <%= f.text_field :firstname, autofocus: true, :class => "fullfield" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :lastname %>
+    <%= f.text_field :lastname, :class => "fullfield" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Update" %>
+  </div>
+
+  
+<% end %>
+
+
+
+
+
+
+<h3>Delete Account</h3>
+
+<p><%= button_to "Delete Account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+
+<%= link_to "Back", :back %>
