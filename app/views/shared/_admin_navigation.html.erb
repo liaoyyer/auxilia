@@ -22,7 +22,7 @@
 
             <li class="dropdown">
 
-          <%= link_to '#', :class => "dropdown-toggle", :'data-close-others' => "true", :'data-hover' => "dropdown", :'data-toggle' => "dropdown" do %>
+          <%= link_to '#', :class => "dropdown-toggle navtip", :'data-close-others' => "true", :'data-hover' => "dropdown", :'data-toggle' => "dropdown", :title => 'Tasks' do %>
                 <i class="fa fa-list">
 
                 </i>
@@ -100,7 +100,7 @@
             <li class="dropdown">
 
 
-          <%= link_to conversations_path, :class => "dropdown-toggle", :'data-close-others' => "true", :'data-hover' => "dropdown", :'data-toggle' => "dropwdown" do %>
+          <%= link_to conversations_path, :class => "dropdown-toggle navtip", :'data-close-others' => "true", :'data-hover' => "dropdown", :'data-toggle' => "dropwdown", :title => 'Inbox' do %>
                 <i class="fa fa-envelope">
                   <% @unread_count= @mailbox.inbox(:read => false).count(:id, :distinct => true) %>
                   <% if @unread_count > 0 %>
@@ -113,6 +113,16 @@
 
 
           <% end %>
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -140,6 +150,27 @@
           <% end %>
         </ul>
       </li>
+
+
+
+      <% if admin_signed_in? %>
+      <li class="dropdown">
+
+          <%= link_to '#', :class => "dropdown-toggle navtip grav_pad", :'data-close-others' => "true", :'data-hover' => "dropdown", :'data-toggle' => "dropdown", :title => 'Settings' do %>
+            <div class="round_gravatar" style="background:transparent url(<%= gravatar_image_url(current_admin.email, size: 25) %>) 0px 0px no-repeat; width:25px; height:25px;"></div>
+          <% end %>
+
+      </li>
+      <% end %>
+
+
+
+
+
+
+
+
+
     </ul>
   </div>
 </nav>

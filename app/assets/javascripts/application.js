@@ -23,4 +23,8 @@
 //= require bootstrap-sprockets
 //= require users
 //= require tickets
+//= require tooltip
 //= require_tree .
+
+
+
