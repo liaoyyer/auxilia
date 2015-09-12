@@ -1,5 +1,15 @@
 <h2>Admin Profile</h2>
 
+
+  <br>
+  <p>
+    <%= gravatar_image_tag(@admin.email) %>
+  </p>
+  <br>
+  <br>
+
+
+
 <%= form_for @admin, url: admin_setting_path(@admin), html: { method: :PATCH } do |f| %>
 
 
