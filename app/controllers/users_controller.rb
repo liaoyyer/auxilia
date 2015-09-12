@@ -185,7 +185,7 @@ private
 
 
 	def get_users
-		@users = User.all 
+		@users = User.where(type: "User")
 	end
 
 
