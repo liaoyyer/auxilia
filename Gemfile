@@ -71,7 +71,7 @@ gem 'chosen-rails'
 
 gem 'public_activity'
 
-
+gem 'twilio-ruby'
 
 
 
