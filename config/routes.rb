@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get 'admin_dashboard/:id/show', to: 'admin_dashboard#show', :as => 'show_admin'
   get 'admin_dashboard/activity', to: 'admin_dashboard#activity'
 
+  post 'notifications/notify' => 'notifications#notify'
 
 
 resources :admin_settings
@@ -89,7 +90,6 @@ resources :admin_settings
 
 
 
-post 'notifications/notify' => 'notifications#notify'
 
 
 
