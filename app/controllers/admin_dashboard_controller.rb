@@ -65,10 +65,10 @@ class AdminDashboardController < ApplicationController
 
 
 
-              client = Twilio::REST::Client.new 'ACa11ba8b0a7ab6158219c8b4251662d07', '9f1ae9b5ecd0f09ed2760ad9fc446d25'
+              client = Twilio::REST::Client.new '', ''
               message = client.messages.create(
-                  from: '13307541274', 
-                  to: '17027384831', 
+                  from: '', 
+                  to: '', 
                   body: "Hi #{ticket_user.firstname}, this is the Auxilia Helpdesk notifying you that ticket ##{@ticket.id} has now been resolved."
               )
 
