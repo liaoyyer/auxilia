@@ -12,6 +12,13 @@ class Admin < User
 
 
 
+	include PublicActivity::Model
+
+	tracked only: :create, owner: :itself
+
+
+
+
 
 
 

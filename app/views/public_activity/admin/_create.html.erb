@@ -1,19 +1,9 @@
 <li class="list-group-item">
   <span class="glyphicon glyphicon-plus"></span>
   <small class="text-muted"><%= a.created_at.strftime('%H:%M:%S %-d %B %Y') %></small><br/>
-
-
-
-
-  
-  <%= activity.owner ? activity.owner.firstname : 'Guest' %>
   <% if a.trackable %>
-    opened ticket <strong>#<%= link_to a.trackable.id, ticket_path(a.trackable) %></strong>
+    <strong><%= a.trackable.firstname %></strong> has been registered as a new admin.
   <% else %>
-    opened a ticket and then deleted it.
+    An admin has been registered and subsequently deleted.
   <% end %>
-
-
-
-
 </li>
