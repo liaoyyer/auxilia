@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
 
+  resources :to_dos
   resources :tickets
 
   get 'admin_dashboard', to: 'admin_dashboard#index'
@@ -74,12 +75,6 @@ resources :admin_settings
     end
   end
   resources :messages, only: [:new, :create]
-
-
-
-
-
-
 
 
 

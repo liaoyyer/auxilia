@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @to_do.title %>
+</p>
+
+<p>
+  <strong>Notes:</strong>
+  <%= @to_do.notes %>
+</p>
+
+<p>
+  <strong>Due date:</strong>
+  <%= @to_do.due_date %>
+</p>
+
+<p>
+  <strong>Admin:</strong>
+  <%= @to_do.admin_id %>
+</p>
+
+<%= link_to 'Edit', edit_to_do_path(@to_do) %> |
+<%= link_to 'Back', to_dos_path %>
