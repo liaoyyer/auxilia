@@ -60,20 +60,7 @@ class AdminDashboardController < ApplicationController
         # if the ticket has been successfully resolved by the admin, send an sms notification to the user of the ticket
         if @ticket.status == true
 
-              ticket_user = User.find(@ticket.user_id)
 
-
-
-
-              client = Twilio::REST::Client.new 'ACa11ba8b0a7ab6158219c8b4251662d07', '9f1ae9b5ecd0f09ed2760ad9fc446d25'
-              message = client.messages.create(
-                  from: '13307541274', 
-                  to: '17027384831', 
-                  body: "Hi #{ticket_user.firstname}, this is the Auxilia Helpdesk notifying you that ticket ##{@ticket.id} has now been resolved."
-              )
-
-
-        end
 
         format.html { redirect_to show_admin_path, notice: 'Ticket was successfully updated by admin.' }
         format.json { render :show, status: :ok, location: @ticket }
