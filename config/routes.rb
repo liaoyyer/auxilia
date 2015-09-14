@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
 
 
-  resources :to_dos
+
+
+
   resources :tickets
 
   get 'admin_dashboard', to: 'admin_dashboard#index'
@@ -81,7 +83,7 @@ resources :admin_settings
 
 
 
-
+  resources :to_dos, :path => "taskmanager"
 
 
 

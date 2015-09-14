@@ -1,4 +1,5 @@
 class ToDosController < ApplicationController
+  before_action :authenticate_admin
   before_action :set_to_do, only: [:show, :edit, :update, :destroy]
 
   # GET /to_dos
