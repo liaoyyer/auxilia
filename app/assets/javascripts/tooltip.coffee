@@ -1,3 +1,6 @@
 jQuery  ->
-	$('a.navtip').tooltip({placement: "bottom"})
-	
+	$('a.navtip').tooltip({placement: "bottom", trigger: "hover"})
+
+
+
+
