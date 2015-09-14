@@ -57,9 +57,6 @@ class AdminDashboardController < ApplicationController
 
 
 
-        # if the ticket has been successfully resolved by the admin, send an sms notification to the user of the ticket
-        if @ticket.status == true
-
 
 
         format.html { redirect_to show_admin_path, notice: 'Ticket was successfully updated by admin.' }
