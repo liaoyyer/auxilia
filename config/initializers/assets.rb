@@ -13,5 +13,6 @@ Rails.application.config.assets.version = '1.0'
 Rails.application.config.assets.precompile += %w( tickets.js )
 Rails.application.config.assets.precompile += %w( to_dos.js )
 Rails.application.config.assets.precompile += %w( analytics.js )
+Rails.application.config.assets.precompile += %w( highcharts-more.js )
 Rails.application.config.assets.precompile += %w( users.js )
 Rails.application.config.assets.precompile += %w( tooltip.js )

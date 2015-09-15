@@ -367,6 +367,81 @@ $('#area_chart_container').highcharts({
 
 
 
+
+
+
+
+
+
+    $('#polar_chart_container').highcharts({
+
+        chart: {
+            polar: true
+        },
+
+        title: {
+            text: 'Highcharts Polar Chart'
+        },
+
+  
+        
+        pane: {
+            size: '80%'
+        },
+        
+        xAxis: {
+            categories: gon.admins,
+            tickmarkPlacement: 'on',
+            lineWidth: 0
+        },
+            
+        yAxis: {
+            gridLineInterpolation: 'polygon',
+            lineWidth: 0,
+            min: 0
+        },
+
+
+
+
+        series: [{
+            type: 'area',
+            name: 'Area',
+            data: gon.admin_counts
+        }]
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 });
 
 
