@@ -8,7 +8,12 @@ namespace :db do
     password = 'password'
 
 
-    [Ticket, User].each(&:delete_all)
+    [Ticket, User, Admin, ToDo].each(&:delete_all)
+
+    ["mailboxer_receipts", "mailboxer_notifications", "mailboxer_conversations", "mailboxer_conversation_opt_outs", "activities"].each do |table|
+      sql = "DELETE FROM #{table};"
+      ActiveRecord::Base.connection.execute(sql)
+    end
 
 
 
@@ -19,12 +24,29 @@ namespace :db do
       admin.email   = Faker::Internet.email
       admin.encrypted_password = Admin.new(:password => password).encrypted_password
 
+
+      ToDo.populate  0..11 do |todo|
+        todo.admin_id = admin.id
+        todo.title = Populator.words(2..4).titleize
+        todo.notes = Populator.sentences(0..10)
+        todo.due_date = (DateTime.now+1.hour)..(DateTime.now+2.months)
+      end
+
+
     end
+
+
+
+
+    
+
+
+
+
+
 
     admin_ids = Array.new
     admin_ids = Admin.pluck(:id)
-
-
 
 
     User.populate 500 do |user|
@@ -64,11 +86,16 @@ namespace :db do
 
 
 
-
+          # if the ticket is in progress or closed, assign an admin and response time
           if ticket.status == false || ticket.status == true
             ticket.admin_id = admin_ids.sample
             ticket.initial_response_time = (ticket.created_at..ticket.updated_at)
           end
+
+
+
+
+
 
 
 
