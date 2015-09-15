@@ -17,11 +17,11 @@
 //= require ImageSelect.jquery
 //= require dataTables/jquery.dataTables
 //= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
-//= require highcharts/highcharts
-//= require highcharts/highcharts-more
 //= require tinymce-jquery
 //= require turbolinks
 //= require bootstrap-sprockets
+//= require highcharts/highcharts-more
+//= require highcharts/highcharts
 //= require to_dos
 //= require users
 //= require tickets

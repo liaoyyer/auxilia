@@ -373,21 +373,27 @@ $('#area_chart_container').highcharts({
 
 
 
+
+
+
+
+
+
+
     $('#polar_chart_container').highcharts({
 
         chart: {
-            polar: true
+            polar: true,
+            type: 'line'
         },
 
         title: {
-            text: 'Highcharts Polar Chart'
+            text: 'Tickets Resolved by Admin'
         },
 
   
-        
-        pane: {
-            size: '80%'
-        },
+
+
         
         xAxis: {
             categories: gon.admins,
@@ -406,22 +412,12 @@ $('#area_chart_container').highcharts({
 
         series: [{
             type: 'area',
-            name: 'Area',
-            data: gon.admin_counts
+            name: 'Resolved Tickets',
+            data: gon.admin_counts,
+            color: '#DE5E5E',
+            pointPlacement: 'on'
         }]
     });
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
