@@ -14,6 +14,7 @@ class ApplicationController < ActionController::Base
   before_action :get_mailbox
 
   before_action :load_activity_info, if: :admin_signed_in?
+  before_action :load_taskmanager_info, if: :admin_signed_in?
 
 
 
@@ -110,6 +111,25 @@ end
     @recent_activities = PublicActivity::Activity.order('created_at DESC').limit(5)
     @activity_count = PublicActivity::Activity.count
   end
+
+
+
+  def load_taskmanager_info
+
+    @recent_tasks = ToDo.where(admin_id: current_admin.id).limit(5)
+    @task_count = ToDo.where(admin_id: current_admin.id).count
+
+  end
+
+
+
+
+
+
+
+
+
+
 
 
 
