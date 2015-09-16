@@ -24,8 +24,24 @@
     <%= f.datetime_select :due_date %>
   </div>
 
+ 
+
+  <div class="field">
+    <%= f.label :task_status %><br>
+    <%= f.label :task_status, "Pending", :value => "false"  %>
+    <%= f.radio_button :task_status, false, :checked => true %>
+    <%= f.label :task_status, "Completed", :value => "true" %>
+    <%= f.radio_button :task_status, true %>
+  </div>
+
+
+
+
+
+
 
   <%= f.hidden_field :admin_id, :value => current_admin.id %>
+
 
 
 

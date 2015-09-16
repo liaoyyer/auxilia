@@ -29,8 +29,8 @@
               <%= link_to to_dos_path, :class => "dropdown-toggle navtip", :'data-close-others' => "true", :'data-hover' => "dropdown", :title => 'Tasks', :'data-toggle' => "dropdown" do %>
                 <i class="fa fa-list">
 
-                  <% if @task_count > 0 %>
-                      <span class="badge"><%= @task_count %></span>
+                  <% if @pending_task_count > 0 %>
+                      <span class="badge"><%= @pending_task_count %></span>
                   <% end %>
 
                 </i>
@@ -40,14 +40,14 @@
 
               <ul class="dropdown-menu todo">
                 <li>
-                  <span class="dropdown-menu-title">You have <%= @task_count %> pending tasks</span>
+                  <span class="dropdown-menu-title">You have <%= @pending_task_count %> pending <%= "task".pluralize(@pending_task_count) %></span>
                 </li>
                 <li>
                   <div class="drop-down-wrapper ps-container">
                     <ul>
 
-                        <% @recent_tasks.each do |task| %>
-                        
+                        <% @recent_pending_tasks.each do |task| %>
+
                           <li>
                             <span><%= task.title %></span>
                           </li>

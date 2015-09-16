@@ -30,6 +30,7 @@ namespace :db do
         todo.title = Populator.words(2..4).titleize
         todo.notes = Populator.sentences(0..10)
         todo.due_date = (DateTime.now+1.hour)..(DateTime.now+2.months)
+        todo.task_status = [false, true]
       end
 
 

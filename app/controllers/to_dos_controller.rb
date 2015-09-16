@@ -70,6 +70,6 @@ class ToDosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def to_do_params
-      params.require(:to_do).permit(:title, :notes, :due_date, :admin_id)
+      params.require(:to_do).permit(:title, :notes, :due_date, :admin_id, :task_status)
     end
 end

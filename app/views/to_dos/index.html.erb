@@ -8,6 +8,7 @@
       <th>Title</th>
       <th>Notes</th>
       <th>Due date</th>
+      <th>Task Status</th>
       <th></th>
     </tr>
   </thead>
@@ -19,6 +20,7 @@
         <td><%= to_do.title %></td>
         <td><%= to_do.notes %></td>
         <td><%= to_do.due_date %></td>
+        <td><%= render partial: "shared/task_status", locals: {task_status: to_do.task_status} %></td>
 
 
 

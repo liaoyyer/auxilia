@@ -20,5 +20,13 @@
   <%= @to_do.admin_id %>
 </p>
 
+
+<p>
+	<strong>Task Status:</strong>
+	<%= render partial: "shared/task_status", locals: {task_status: @to_do.task_status} %>
+</p>
+
+
+
 <%= link_to 'Edit', edit_to_do_path(@to_do) %> |
 <%= link_to 'Back', to_dos_path %>

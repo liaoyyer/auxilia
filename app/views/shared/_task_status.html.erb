@@ -1,0 +1,7 @@
+<%= case task_status
+      when false
+      		'<span class="label label-sm label-warning">pending</span>'.html_safe
+      when true
+            '<span class="label label-sm label-danger">completed</span>'.html_safe
+      end
+%>
