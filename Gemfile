@@ -73,7 +73,7 @@ gem 'public_activity'
 
 gem 'twilio-ruby'
 
-
+gem 'simple_form'
 
 
 

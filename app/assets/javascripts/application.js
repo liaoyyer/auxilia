@@ -22,7 +22,7 @@
 //= require bootstrap-sprockets
 //= require highcharts/highcharts-more
 //= require highcharts/highcharts
-//= require to_dos
+//= require tasks
 //= require users
 //= require tickets
 //= require tooltip

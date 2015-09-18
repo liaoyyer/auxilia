@@ -1,3 +1,14 @@
 // Place all the styles related to the ToDos controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+
+#tasks, .due_date { padding-left: 15px; }
+
+.edit-button {
+  float: right;
+  padding-right: 10px;
+}
+
+#task-form { padding-bottom: 15px; }

@@ -83,7 +83,7 @@ resources :admin_settings
 
 
 
-  resources :to_dos, :path => "taskmanager"
+  resources :tasks
 
 
 

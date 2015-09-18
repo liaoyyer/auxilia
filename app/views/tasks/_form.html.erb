@@ -1,0 +1,14 @@
+<%= simple_form_for @task, remote: true do |f|   %>
+  <%= f.input  :title %>
+  <br>
+  <%= f.input  :notes, as: :text %>
+  <br>
+  <%= f.input  :due_date %>
+  <br>
+  <%= f.hidden_field  :task_status, :value => false %>
+  <br>
+  <%= f.hidden_field  :admin_id, :value => current_admin.id %>
+
+  <br>
+  <%= f.button :submit %>
+<% end %>

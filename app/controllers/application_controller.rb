@@ -116,8 +116,8 @@ end
 
   def load_taskmanager_info
 
-    @recent_pending_tasks = ToDo.where(admin_id: current_admin.id, task_status: false).limit(5)
-    @pending_task_count = ToDo.where(admin_id: current_admin.id, task_status: false).count
+    @recent_pending_tasks = Task.where(admin_id: current_admin.id, task_status: false).limit(5)
+    @pending_task_count = Task.where(admin_id: current_admin.id, task_status: false).count
 
   end
 

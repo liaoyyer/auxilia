@@ -8,7 +8,7 @@ namespace :db do
     password = 'password'
 
 
-    [Ticket, User, Admin, ToDo].each(&:delete_all)
+    [Ticket, User, Admin, Task].each(&:delete_all)
 
     ["mailboxer_receipts", "mailboxer_notifications", "mailboxer_conversations", "mailboxer_conversation_opt_outs", "activities"].each do |table|
       sql = "DELETE FROM #{table};"
@@ -25,12 +25,12 @@ namespace :db do
       admin.encrypted_password = Admin.new(:password => password).encrypted_password
 
 
-      ToDo.populate  0..11 do |todo|
-        todo.admin_id = admin.id
-        todo.title = Populator.words(2..4).titleize
-        todo.notes = Populator.sentences(0..10)
-        todo.due_date = (DateTime.now+1.hour)..(DateTime.now+2.months)
-        todo.task_status = [false, true]
+      Task.populate  0..11 do |task|
+        task.admin_id = admin.id
+        task.title = Populator.words(2..4).titleize
+        task.notes = Populator.sentences(0..10)
+        task.due_date = (DateTime.now+1.hour)..(DateTime.now+2.months)
+        task.task_status = [false, true]
       end
 
 
