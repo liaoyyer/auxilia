@@ -83,15 +83,13 @@ resources :admin_settings
 
 
 
-  resources :tasks
+  resources :tasks do
 
+    member do
+      put :toggle
+    end
 
-
-
-
-
-
-
+  end
 
 
 

@@ -1,5 +1,20 @@
 <li class="list-group-item list-group-item-info">
-  <%= task.title %>
+
+
+
+
+
+
+  <% if task.task_status == true %>
+    <span style="text-decoration: line-through"><%= task.title %></span>
+  <% else %>
+  <%= link_to toggle_task_path(task), remote: true, method: :put do %>
+    <input type="checkbox" id="task_status_checkbox">
+    <%= task.title %>
+    <% end %>
+  <% end %>
+
+
 
   <span class="due_date"><%= task.due_date %></span>
 
@@ -9,9 +24,12 @@
     <% end %>
 
     
-    <%= link_to task, remote: true, method: :delete,
-        data: { confirm: 'Are you sure?' } do %>
-      <button class="btn btn-danger btn-xs">Delete!</button>
+    <%= link_to task, remote: true, method: :delete do %>
+      <i class="fa fa-times"></i>
     <% end %>
   </span>
 </li>
+
+
+
+

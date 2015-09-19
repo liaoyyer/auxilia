@@ -1,7 +1,7 @@
 class TasksController < ApplicationController
   before_action :authenticate_admin
-  before_action :all_tasks, only: [:index, :create, :update, :destroy]
-  before_action :set_task, only: [:edit, :update, :destroy]
+  before_action :all_tasks, only: [:index, :create, :update, :destroy, :toggle]
+  before_action :set_task, only: [:edit, :update, :destroy, :toggle]
   respond_to :html, :js
 
 
@@ -24,6 +24,9 @@ class TasksController < ApplicationController
   end
 
 
+  def toggle
+    @task.update_attribute(:task_status, true)
+  end
 
 
   private
