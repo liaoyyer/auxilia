@@ -32,7 +32,7 @@ class TasksController < ApplicationController
   private
 
     def all_tasks
-      @tasks = Task.where(:admin_id => current_admin.id)
+      @tasks = Task.where(:admin_id => current_admin.id).order(created_at: :asc)
     end
 
 
@@ -40,7 +40,7 @@ class TasksController < ApplicationController
       @task = Task.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
+    # Never trust parameters internet, only allow the white list through.
     def task_params
       params.require(:task).permit(:title, :notes, :due_date, :admin_id, :task_status)
     end
