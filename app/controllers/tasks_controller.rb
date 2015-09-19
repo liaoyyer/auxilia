@@ -25,7 +25,7 @@ class TasksController < ApplicationController
 
 
   def toggle
-    @task.update_attribute(:task_status, true)
+    @task.toggle!(:task_status)
   end
 
 

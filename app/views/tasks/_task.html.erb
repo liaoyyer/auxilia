@@ -6,12 +6,15 @@
 
 
   <% if task.task_status == true %>
+    <%= link_to toggle_task_path(task), remote: true, method: :put do %>
+      <input type="checkbox" id="task_status_checkbox">
+    <% end %>  
     <span style="text-decoration: line-through"><%= task.title %></span>
   <% else %>
-  <%= link_to toggle_task_path(task), remote: true, method: :put do %>
-    <input type="checkbox" id="task_status_checkbox">
-    <%= task.title %>
+    <%= link_to toggle_task_path(task), remote: true, method: :put do %>
+      <input type="checkbox" id="task_status_checkbox">
     <% end %>
+    <%= task.title %>
   <% end %>
 
 
