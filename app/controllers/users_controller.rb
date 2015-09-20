@@ -2,10 +2,9 @@ class UsersController < ApplicationController
 
 
 
-	# restrict access to admins only
+
 	before_action :authenticate_admin
 
-	before_action :set_user, only: [:show, :edit, :update, :destroy]
 
 
 
@@ -26,9 +25,12 @@ class UsersController < ApplicationController
 
 
 
+
+
+
  # GET /users/new
   def new
-    @user = user.new
+    @user = User.new
   end
 
 
@@ -45,7 +47,7 @@ class UsersController < ApplicationController
   # GET /users/1/edit
   def edit
 
-
+  	@user = User.find(params[:id])
 
 
   end
@@ -126,15 +128,17 @@ class UsersController < ApplicationController
 
 
 
-  # DELETE /users/1
-  # DELETE /users/1.json
+  # completely destroy account
   def destroy
-    @user.destroy
+  	@user = User.find(params[:id])
+    
     respond_to do |format|
-      if user_signed_in? 
-        format.html { redirect_to users_url, notice: 'user has successfully cancelled their account.' }
+      if (user_signed_in?) && (current_user.id == @user.id)
+      	@user.destroy
+        format.html { redirect_to users_url, notice: 'user has successfully destroyed their account.' }
       elsif admin_signed_in?
-        format.html { redirect_to users_url, notice: 'user was successfully deleted by admin.' }
+      	@user.destroy
+        format.html { redirect_to users_url, notice: 'user was successfully destroyed by admin.' }
       end
 
 
@@ -145,7 +149,25 @@ class UsersController < ApplicationController
 
 
 
+  # deactivate account for later removal
+  def deactivate
+  	@user = User.find(params[:id])
+    @user.create_activity action: :deactivate, owner: current_admin
+    respond_to do |format|
+      if (user_signed_in?) && (current_user.id == @user.id)
+      	@user.activation_status = false
+      	@user.save
+        format.html { redirect_to users_url, notice: 'user has successfully cancelled their account.' }
+      elsif admin_signed_in?
+      	@user.activation_status = false
+      	@user.save
+        format.html { redirect_to users_url, notice: 'user was successfully deactivated by admin.' }
+      end
 
+
+      format.json { head :no_content }
+    end
+  end
 
 
 
@@ -192,15 +214,19 @@ private
 
 
 
+
 	# Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])
     end
 
+
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params.require(:user).permit(:firstname, :lastname, :email)
     end
+
 
 
 

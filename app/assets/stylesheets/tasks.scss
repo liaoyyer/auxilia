@@ -6,9 +6,28 @@
 
 #tasks, .due_date { padding-left: 15px; }
 
-.edit-button {
+.crossmark-delete-button {
   float: right;
   padding-right: 10px;
 }
 
 #task-form { padding-bottom: 15px; }
+
+
+
+
+
+
+
+.task-notepad  {
+  color: #31708f;
+  background-color: #FFFFCC;
+}
+
+
+
+
+.new-task-button-margin {
+	padding-left: 44px;
+	padding-top: 15px;
+}

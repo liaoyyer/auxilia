@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   delete 'admin_dashboard/:id/destroy', to: 'admin_dashboard#destroy', :as => 'destroy_ticket'
   get 'admin_dashboard/:id/show', to: 'admin_dashboard#show', :as => 'show_admin'
   get 'admin_dashboard/activity', to: 'admin_dashboard#activity'
+  get 'admin_dashboard/admin_user_management', to: 'admin_dashboard#admin_user_management'
 
   post 'notifications/notify' => 'notifications#notify'
 
@@ -20,6 +21,9 @@ Rails.application.routes.draw do
 resources :admin_settings
 
 
+
+  delete 'users/:id' => 'users#destroy', :as => :destroy_user
+  put 'users/:id' => 'users#deactivate', :as => :deactivate_user
 
 
 
@@ -39,8 +43,10 @@ resources :admin_settings
 
 
 
+
+
   
-  resources :users
+    resources :users
 
 
 
@@ -59,6 +65,24 @@ resources :admin_settings
 
 
   devise_for :admins, controllers: { sessions: "admins/sessions", passwords: "admins/passwords", registrations: "admins/registrations" }
+
+  devise_scope :admin do
+    authenticated :admin do
+      root :to => 'admin_dashboard#index', as: :authenticated_admin_root
+    end
+    unauthenticated :admin do
+      root :to => 'admins/sessions#new', as: :unauthenticated_admin_root
+    end
+  end
+
+
+
+
+
+  resources :admins
+
+
+
 
 
 
@@ -84,14 +108,12 @@ resources :admin_settings
 
 
   resources :tasks do
-
     member do
       put :toggle
     end
-
   end
-
-
+ 
+  get 'cancel', to: 'tasks#cancel'
 
 
 

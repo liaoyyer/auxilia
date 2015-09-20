@@ -65,9 +65,6 @@ class AdminSettingsController < ApplicationController
 
 
 
-
-  # PATCH/PUT /admins/1
-  # PATCH/PUT /admins/1.json
   def update
 
 
@@ -107,17 +104,15 @@ class AdminSettingsController < ApplicationController
 
 
 
-
-
-  # DELETE /admins/1
-  # DELETE /admins/1.json
   def destroy
-    @admin.destroy
+
     respond_to do |format|
-      if admin_signed_in? 
+      if @admin.id == current_admin
+      	@admin.destroy 
         format.html { redirect_to admins_url, notice: 'admin has successfully cancelled their account.' }
-      elsif admin_signed_in?
-        format.html { redirect_to admins_url, notice: 'admin was successfully deleted by admin.' }
+      else
+      	@admin.destroy
+        format.html { redirect_to admins_url, notice: "admin was successfully deleted by admin# #{current.admin}." }
       end
 
 

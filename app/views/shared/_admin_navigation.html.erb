@@ -171,7 +171,19 @@
 
 
       <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Menu <span class="caret"></span></a>
+        
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+          <% if admin_signed_in? %>
+            <img class="round_gravatar navgrav-margin" style="background:transparent url(<%= gravatar_image_url(current_admin.email, size: 25) %>) 0px 0px no-repeat; width:25px; height:25px;"></img>
+            <span style="display:inline-block; vertical-align: middle; font-size: 12px; line-height: 13px">Administrator<br>Main Menu</span><span class="caret"></span></a>
+          <% else %>
+            <span>Main Menu</span><span class="caret"></span></a>
+          <% end %>
+
+
+
+
+
         <ul class="dropdown-menu" role="menu">
           <% if admin_signed_in? %>
                 <li><%= link_to "Home", admin_dashboard_path %></li>
@@ -180,7 +192,8 @@
                 <li><%= link_to 'Activity Feed', admin_dashboard_activity_path %></li>
                 <li><%= link_to 'Inbox', conversations_path %></li>
                 <li><%= link_to 'Manage Users', users_path %></li>
-                <li><%= link_to 'Admin Settings', admin_settings_path %></li>
+                <li><%= link_to 'Manage Admins', admins_path %></li>
+                <li><%= link_to 'My Settings', admin_settings_path %></li>
                 <li><%= link_to "Logout", destroy_admin_session_path, method: :delete %></li>
           <% else %>
             <li><a href="/">User Login</a></li>
@@ -191,15 +204,7 @@
 
 
 
-      <% if admin_signed_in? %>
-      <li class="dropdown">
 
-          <%= link_to '#', :class => "dropdown-toggle navtip grav_pad", :'data-close-others' => "true", :'data-hover' => "dropdown", :'data-toggle' => "dropdown", :title => 'Settings' do %>
-            <div class="round_gravatar" style="background:transparent url(<%= gravatar_image_url(current_admin.email, size: 25) %>) 0px 0px no-repeat; width:25px; height:25px;"></div>
-          <% end %>
-
-      </li>
-      <% end %>
 
 
 

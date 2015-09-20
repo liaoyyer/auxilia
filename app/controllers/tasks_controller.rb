@@ -29,6 +29,18 @@ class TasksController < ApplicationController
   end
 
 
+
+  def cancel
+
+  end
+
+
+
+
+
+
+
+
   private
 
     def all_tasks

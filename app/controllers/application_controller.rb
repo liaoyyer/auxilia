@@ -18,13 +18,11 @@ class ApplicationController < ActionController::Base
 
 
 
-  rescue_from ActiveRecord::RecordNotFound do
-    flash[:warning] = 'Resource not found.'
-    redirect_back_or root_path
-  end
-
-
   before_action :configure_permitted_parameters, if: :devise_controller?
+
+
+
+
 
 
   def redirect_back_or(path)

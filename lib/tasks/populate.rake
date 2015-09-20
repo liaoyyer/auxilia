@@ -23,6 +23,7 @@ namespace :db do
       admin.lastname = Faker::Name.last_name
       admin.email   = Faker::Internet.email
       admin.encrypted_password = Admin.new(:password => password).encrypted_password
+      admin.activation_status = true
 
 
       Task.populate  0..11 do |task|
@@ -55,6 +56,7 @@ namespace :db do
       user.lastname = Faker::Name.last_name
       user.email   = Faker::Internet.email
       user.encrypted_password = User.new(:password => password).encrypted_password
+      user.activation_status = true
 
 
       Ticket.populate 0..4 do |ticket|

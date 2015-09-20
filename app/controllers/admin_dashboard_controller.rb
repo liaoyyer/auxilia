@@ -166,7 +166,11 @@ end
 
 
 
+def admin_user_management
 
+  get_admins
+
+end
 
 
 
@@ -210,6 +214,11 @@ end
 
 
 
+
+
+  def get_admins
+    @admins = Admin.all
+  end
 
 
 

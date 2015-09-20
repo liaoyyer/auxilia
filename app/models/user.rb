@@ -33,7 +33,7 @@ class User < ActiveRecord::Base
 
 	include PublicActivity::Model
 
-	tracked only: :create, owner: :itself
+	tracked only: [:create, :destroy, :deactivate], owner: :itself
 
 
 
@@ -46,8 +46,9 @@ class User < ActiveRecord::Base
 
 
 
-
-
+def active_for_authentication?
+  super && activation_status?
+end
 
 
 

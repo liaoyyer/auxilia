@@ -1,41 +1,28 @@
-<li class="list-group-item list-group-item-info">
-
-
-
-
-
+<li class="list-group-item task-notepad">
 
   <% if task.task_status == true %>
     <%= link_to toggle_task_path(task), remote: true, method: :put do %>
       <input type="checkbox" id="task_status_checkbox" checked="checked">
     <% end %>  
-    <span style="text-decoration: line-through"><%= task.title %></span>
+    <span style="text-decoration: line-through">
+      <%= link_to edit_task_path(task), remote: true do %>
+        <%= task.title %>
+      <% end %>
+    </span>
   <% else %>
     <%= link_to toggle_task_path(task), remote: true, method: :put do %>
       <input type="checkbox" id="task_status_checkbox">
     <% end %>
-    <%= task.title %>
+    <%= link_to edit_task_path(task), remote: true do %>
+      <%= task.title %>
+    <% end %>
   <% end %>
 
-
-
-  <span class="due_date"><%= task.due_date %></span>
-
-  <span class="edit-button">
-    <%= link_to edit_task_path(task), remote: true do %>
-      <button class="btn btn-primary btn-xs">Edit</button>
-    <% end %>
-
-    
+  <span class="crossmark-delete-button">
     <%= link_to task, remote: true, method: :delete do %>
       <i class="fa fa-times"></i>
     <% end %>
   </span>
-
-
-
-
-
 
 </li>
 

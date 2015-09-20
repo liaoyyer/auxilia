@@ -77,7 +77,21 @@
 
 
       <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Menu <span class="caret"></span></a>
+
+
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+          <% if user_signed_in? %>
+          <img class="round_gravatar navgrav-margin" style="background:transparent url(<%= gravatar_image_url(current_user.email, size: 25) %>) 0px 0px no-repeat; width:25px; height:25px;"></img>
+          <% end %>
+          <span style="display:inline-block; vertical-align: middle; font-size: 12px; line-height: 13px">Main Menu</span><span class="caret"></span></a>
+
+
+
+
+
+
+
+
         <ul class="dropdown-menu" role="menu">
           <% if user_signed_in? %>
                 <li><%= link_to "Home", tickets_path %></li>
@@ -100,7 +114,7 @@
 
 
 
-      
+
     </ul>
 
 
