@@ -8,8 +8,7 @@ class AdminDashboardController < ApplicationController
 
 	before_action :set_ticket, only: [:show, :resolve, :update, :destroy]
 
-
-
+  before_action :mark_as_read, only: [:activity]
 
 
 
@@ -67,8 +66,8 @@ class AdminDashboardController < ApplicationController
 
               client = Twilio::REST::Client.new 'ACa11ba8b0a7ab6158219c8b4251662d07', '9f1ae9b5ecd0f09ed2760ad9fc446d25'
               message = client.messages.create(
-                  from: '13307541274', 
-                  to: '17027384831', 
+                  from: '00000000000', 
+                  to: '00000000000', 
                   body: "Hi #{ticket_user.firstname}, this is the Auxilia Helpdesk notifying you that ticket ##{@ticket.id} has now been resolved."
               )
 
@@ -154,7 +153,7 @@ class AdminDashboardController < ApplicationController
 
 def activity
 
-    @all_activities = PublicActivity::Activity.order('created_at DESC')
+
 
 end
 
@@ -192,6 +191,48 @@ end
 
 
 	private
+
+
+
+
+
+
+
+
+
+
+
+  def mark_as_read
+
+
+
+    @all_activities = PublicActivity::Activity.order('created_at DESC')
+
+
+    #mark all unread activites as read 
+    @all_activities.each do |activity|
+        if activity.read_flag == false || activity.read_flag == nil
+          activity.read_flag = true
+        end
+        activity.save
+    end
+
+    # update unread activity count
+    @unread_activity_count = PublicActivity::Activity.where(read_flag: [false, nil]).count
+
+
+
+  end
+
+
+
+
+
+
+
+
+
+
 
 
 

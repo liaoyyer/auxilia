@@ -22,8 +22,45 @@ resources :admin_settings
 
 
 
-  delete 'users/:id' => 'users#destroy', :as => :destroy_user
-  put 'users/:id' => 'users#deactivate', :as => :deactivate_user
+
+
+
+
+
+
+    get 'deactivated_users', to: 'users#deactivated_user_index'
+
+    resources :users do
+      member do
+        patch 'deactivate'
+        patch 'reactivate'
+      end
+    end
+
+
+    resources :users, :except => :patch
+
+    # delete 'users/:id' => 'users#destroy', :as => :destroy_user
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -46,7 +83,6 @@ resources :admin_settings
 
 
   
-    resources :users
 
 
 
@@ -54,9 +90,8 @@ resources :admin_settings
 
 
 
-
-
-
+# delete 'admins/:id' => 'admins#destroy', :as => :destroy_admin
+  put 'admins/:id' => 'admins#deactivate', :as => :deactivate_admin
 
 
 

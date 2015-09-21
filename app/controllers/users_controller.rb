@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
 
 
-	before_action :authenticate_admin
+	before_action :authenticate_access
 
 
 
@@ -26,15 +26,9 @@ class UsersController < ApplicationController
 
 
 
-
-
- # GET /users/new
-  def new
-    @user = User.new
+  def deactivated_user_index
+  	get_deactivated_users
   end
-
-
-
 
 
 
@@ -85,8 +79,7 @@ class UsersController < ApplicationController
 
 
 
-  # PATCH/PUT /users/1
-  # PATCH/PUT /users/1.json
+
   def update
 
 
@@ -149,10 +142,16 @@ class UsersController < ApplicationController
 
 
 
-  # deactivate account for later removal
+
+
+
+
+
+
+
   def deactivate
   	@user = User.find(params[:id])
-    @user.create_activity action: :deactivate, owner: current_admin
+    @user.create_activity action: :deactivate, owner: @current_app_usr
     respond_to do |format|
       if (user_signed_in?) && (current_user.id == @user.id)
       	@user.activation_status = false
@@ -163,8 +162,6 @@ class UsersController < ApplicationController
       	@user.save
         format.html { redirect_to users_url, notice: 'user was successfully deactivated by admin.' }
       end
-
-
       format.json { head :no_content }
     end
   end
@@ -172,6 +169,24 @@ class UsersController < ApplicationController
 
 
 
+
+
+
+
+
+
+
+
+  def reactivate
+  	@user = User.find(params[:id])
+    @user.create_activity action: :reactivate, owner: @current_app_usr
+    respond_to do |format|
+      	@user.activation_status = true
+      	@user.save
+        format.html { redirect_to users_url, notice: 'user was successfully reactivated by admin.' }
+        format.json { head :no_content }
+      end
+  end
 
 
 
@@ -207,11 +222,13 @@ private
 
 
 	def get_users
-		@users = User.where(type: "User")
+		@users = User.where(type: "User", activation_status: true)
 	end
 
 
-
+	def get_deactivated_users
+		@users = User.where(type: "User", activation_status: false)
+	end
 
 
 
@@ -224,7 +241,7 @@ private
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:firstname, :lastname, :email)
+      params.require(:user).permit(:firstname, :lastname, :email, :activation_status)
     end
 
 

@@ -42,6 +42,12 @@
     <%= f.password_field :password_confirmation, autocomplete: "off", :class => "fullfield" %>
   </div>
 
+
+
+  <%= f.hidden_field :activation_status, :value => true %>
+
+
+
   <div class="actions">
     <%= button_tag(type: 'submit', class: "btn btn-danger btn-sm fullfield") do %>
         <i class="fa fa-pencil-square"></i> Register

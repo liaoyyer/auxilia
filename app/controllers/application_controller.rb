@@ -25,6 +25,25 @@ class ApplicationController < ActionController::Base
 
 
 
+# TEMPORARY GLOBAL
+  SUPERADMIN = 20583
+
+
+
+
+
+
+  def authenticate_superadmin
+    unless current_admin.id == SUPERADMIN
+      redirect_to '/'
+    end
+  end
+
+
+
+
+
+
   def redirect_back_or(path)
     redirect_to request.referer || path
   end
@@ -105,10 +124,21 @@ end
   end
 
 
+
+
+
+
+
+
   def load_activity_info
-    @recent_activities = PublicActivity::Activity.order('created_at DESC').limit(5)
-    @activity_count = PublicActivity::Activity.count
+    @recent_activities = PublicActivity::Activity.where(read_flag: [false, nil]).order('created_at DESC').limit(5)
+    @unread_activity_count = PublicActivity::Activity.where(read_flag: [false, nil]).count
   end
+
+
+
+
+
 
 
 
@@ -163,6 +193,7 @@ end
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) << :firstname
     devise_parameter_sanitizer.for(:sign_up) <<:lastname
+    devise_parameter_sanitizer.for(:sign_up) << :activation_status
     devise_parameter_sanitizer.for(:account_update) << :firstname
     devise_parameter_sanitizer.for(:account_update) << :lastname
   end

@@ -85,8 +85,8 @@
 
           <%= link_to admin_dashboard_activity_path, :class => "dropdown-toggle navtip", :'data-close-others' => "true", :'data-hover' => "dropdown", :'data-toggle' => "dropdown", :title => "Activity" do %>
                 <i class="fa fa-bell">
-                  <% if @activity_count > 0 %>
-                      <span class="badge"><%= @activity_count %></span>
+                  <% if @unread_activity_count > 0 %>
+                      <span class="badge"><%= @unread_activity_count %></span>
                   <% end %>
                 </i>                
           <% end %>
@@ -94,7 +94,7 @@
 
               <ul class="dropdown-menu notifications">
                 <li>
-                  <span class="dropdown-menu-title">You have <%= @activity_count %> new notifications.</span>
+                  <span class="dropdown-menu-title">You have <%= @unread_activity_count %> new notifications.</span>
                 </li>
                 <li>
                   <div class="drop-down-wrapper ps-container">
@@ -192,7 +192,10 @@
                 <li><%= link_to 'Activity Feed', admin_dashboard_activity_path %></li>
                 <li><%= link_to 'Inbox', conversations_path %></li>
                 <li><%= link_to 'Manage Users', users_path %></li>
-                <li><%= link_to 'Manage Admins', admins_path %></li>
+                <li><%= link_to 'Manage Deactivated Users', deactivated_users_path %></li>
+                <% if current_admin.id == 20583 %>
+                  <li><%= link_to 'Manage Admins', admins_path %></li>
+                <% end %>
                 <li><%= link_to 'My Settings', admin_settings_path %></li>
                 <li><%= link_to "Logout", destroy_admin_session_path, method: :delete %></li>
           <% else %>

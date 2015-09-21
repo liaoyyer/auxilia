@@ -26,19 +26,42 @@
   </div>
 
   <div class="actions">
-    <%= f.submit "Update" %>
+    <%= f.submit "Update", class: 'btn btn-xs btn-default' %>
   </div>
 
   
 <% end %>
 
 
+<br>
+<br>
+
+
+<% if @user.activation_status == true %>
+
+<h3>Deactivate Account</h3>
+
+       
+
+              <%= button_to "Deactivate", deactivate_user_path(@user), data: { confirm: "Are you sure?" }, method: :patch, class: 'btn btn-xs btn-default', title: 'Deactivate', rel: 'tooltip' %>
+
+
+<% else %>
+
+<h3>Reactivate Account</h3>
+
+              <%= button_to "Reactivate", reactivate_user_path(@user), data: { confirm: "Are you sure?" }, method: :patch, class: 'btn btn-xs btn-default', title: 'Reactivate', rel: 'tooltip' %>
+
+<% end %>
 
 
 
 
-<h3>Delete Account</h3>
+<br>
+<br>
+<br>
 
-<p><%= button_to "Delete Account", destroy_user_path(@user), data: { confirm: "Are you sure?" }, method: :delete %></p>
+
+
 
 <%= link_to "Back", :back %>

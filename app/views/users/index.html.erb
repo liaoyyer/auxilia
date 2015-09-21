@@ -9,7 +9,6 @@
       <th>Email</th>
       <th>Joined At</th>
       <th>Last Login</th>
-      <th>Activation Status</th>
       <th></th>
 
 
@@ -34,9 +33,7 @@
           <td><%= user.email %></td>
           <td class="timestamp"><%= user.created_at %></td>
           <td class="timestamp"><%= user.last_sign_in_at %></td>
-          <td><% if user.activation_status == false %>
-              <%= "DEACTIVATED" %>
-              <% end %></td>
+
 
 
 
@@ -46,7 +43,7 @@
               <% end %>
 
      
-              <%= link_to deactivate_user_path(user), method: :put, data: { confirm: "Are you sure?" }, class: 'btn btn-xs btn-default', title: 'Deactivate', rel: 'tooltip' do %>
+              <%= link_to deactivate_user_path(user), method: :patch, data: { confirm: "Are you sure?" }, class: 'btn btn-xs btn-default', title: 'Deactivate', rel: 'tooltip' do %>
                 <i class="fa fa-power-off"></i>
               <% end %>
         </td>

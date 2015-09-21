@@ -96,7 +96,7 @@
           <% if user_signed_in? %>
                 <li><%= link_to "Home", tickets_path %></li>
                 <li><%= link_to "Inbox", conversations_path %></li>
-                <li><%= link_to "My Account", "#" %></li>
+                <li><%= link_to "My Account", edit_user_path(current_user.id) %></li>
                 <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
           <% else %>
             <li><a href="/">User Login</a></li>

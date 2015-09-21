@@ -33,7 +33,7 @@ class User < ActiveRecord::Base
 
 	include PublicActivity::Model
 
-	tracked only: [:create, :destroy, :deactivate], owner: :itself
+	tracked only: [:create, :destroy, :deactivate], owner: Proc.new {|controller, model| controller.current_user ? controller.current_user : controller.current_admin}
 
 
 
@@ -45,9 +45,9 @@ class User < ActiveRecord::Base
 
 
 
-
+# customize devise authentication method
 def active_for_authentication?
-  super && activation_status?
+  super && activation_status == true
 end
 
 

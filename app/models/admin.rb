@@ -12,10 +12,12 @@ class Admin < User
 
 
 
+
+
+
 	include PublicActivity::Model
 
-	tracked only: :create, owner: :itself
-
+	tracked only: [:create, :destroy, :deactivate], owner: Proc.new {|controller, model| controller.current_user ? controller.current_user : controller.current_admin}
 
 
 
