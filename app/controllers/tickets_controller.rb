@@ -88,7 +88,9 @@ class TicketsController < ApplicationController
   # DELETE /tickets/1
   # DELETE /tickets/1.json
   def destroy
+
     @ticket.destroy
+    
     respond_to do |format|
       if user_signed_in? 
         format.html { redirect_to tickets_url, notice: 'Ticket was successfully destroyed by user.' }

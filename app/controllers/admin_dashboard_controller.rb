@@ -8,7 +8,7 @@ class AdminDashboardController < ApplicationController
 
 	before_action :set_ticket, only: [:show, :resolve, :update, :destroy]
 
-  before_action :mark_as_read, only: [:activity]
+
 
 
 
@@ -55,24 +55,8 @@ class AdminDashboardController < ApplicationController
       if @ticket.update(ticket_params)
 
 
+        # twilio code goes here
 
-        # if the ticket has been successfully resolved by the admin, send an sms notification to the user of the ticket
-        if @ticket.status == true
-
-              ticket_user = User.find(@ticket.user_id)
-
-
-
-
-              client = Twilio::REST::Client.new 'ACa11ba8b0a7ab6158219c8b4251662d07', '9f1ae9b5ecd0f09ed2760ad9fc446d25'
-              message = client.messages.create(
-                  from: '00000000000', 
-                  to: '00000000000', 
-                  body: "Hi #{ticket_user.firstname}, this is the Auxilia Helpdesk notifying you that ticket ##{@ticket.id} has now been resolved."
-              )
-
-
-        end
 
         format.html { redirect_to show_admin_path, notice: 'Ticket was successfully updated by admin.' }
         format.json { render :show, status: :ok, location: @ticket }
@@ -108,7 +92,7 @@ class AdminDashboardController < ApplicationController
     if current_admin.id == @ticket.admin_id
       @ticket.destroy
       respond_to do |format|
-      format.html { redirect_to tickets_url, notice: 'Ticket was successfully destroyed.' }
+      format.html { redirect_to '/', notice: 'Ticket was successfully destroyed.' }
       format.json { head :no_content }
       end
     else
@@ -124,7 +108,7 @@ class AdminDashboardController < ApplicationController
 
 
 
-  def analytics
+  def metrics
     get_tickets
 
     # redirect if there are no tickets to analyze
@@ -153,6 +137,7 @@ class AdminDashboardController < ApplicationController
 
 def activity
 
+  get_activities
 
 
 end
@@ -202,25 +187,9 @@ end
 
 
 
-  def mark_as_read
-
-
+  def get_activities
 
     @all_activities = PublicActivity::Activity.order('created_at DESC')
-
-
-    #mark all unread activites as read 
-    @all_activities.each do |activity|
-        if activity.read_flag == false || activity.read_flag == nil
-          activity.read_flag = true
-        end
-        activity.save
-    end
-
-    # update unread activity count
-    @unread_activity_count = PublicActivity::Activity.where(read_flag: [false, nil]).count
-
-
 
   end
 

@@ -1,12 +1,13 @@
 class AdminSettingsController < ApplicationController
 
+# controller for admin to manipulate their own personal settings
+# this also functions as a way for authorizing only the current admin to maniplate their own settings
+#   through this controller
 
+	#admins only
 	before_action :authenticate_admin
 
-
-
-
-	before_action :set_admin, only: [:show, :edit, :update, :destroy]
+	before_action :set_admin
 
 
 
@@ -20,7 +21,7 @@ class AdminSettingsController < ApplicationController
 
   def index
 
-	set_admin
+
 
   end
 
@@ -162,7 +163,7 @@ class AdminSettingsController < ApplicationController
 	private
 
 
-	# Use callbacks to share common setup or constraints between actions.
+	# this is what functions as a form of self-authorization
     def set_admin
       @admin = Admin.find(current_admin.id)
     end

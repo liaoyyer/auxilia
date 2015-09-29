@@ -24,6 +24,7 @@
 //= require highcharts/highcharts
 //= require tasks
 //= require users
+//= require admins
 //= require tickets
 //= require tooltip
 //= require_tree .

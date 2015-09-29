@@ -3,6 +3,16 @@ jQuery(function(){
 
 
 
+Highcharts.setOptions({
+colors: ['#337ab7', '#d9534f', '#5cb85c', '#e0e0e0', '#5bc0de', '#f0ad4e', '#777777']
+});
+
+
+
+
+
+
+
 
 
     $('#pie_chart_container').highcharts({
@@ -414,7 +424,6 @@ $('#area_chart_container').highcharts({
             type: 'area',
             name: 'Resolved Tickets',
             data: gon.admin_counts,
-            color: '#DE5E5E',
             pointPlacement: 'on'
         }]
     });

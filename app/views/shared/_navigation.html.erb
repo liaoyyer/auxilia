@@ -14,40 +14,7 @@
 
 
 
-
-
-
           <% if user_signed_in? %>
-
-
-
-
-
-            <li class="dropdown">
-
-
-
-
-
-            <li class="dropdown">
-
-          <%= link_to '#', :class => "dropdown-toggle", :'data-close-others' => "true", :'data-hover' => "dropdown", :'data-toggle' => "dropwdown" do %>
-                <i class="fa fa-bell">
-                  <!-- <% @unread_count= @mailbox.inbox(:read => false).count(:id, :distinct => true) %>
-                  <% if @unread_count > 0 %>
-                  <span class="badge"><%= @unread_count %></span>
-                  <% end %> -->
-                </i>
-          <% end %>
-
-            </li>
-
-
-
-
-
-
-
 
 
             <li class="dropdown">
@@ -63,8 +30,6 @@
           <% end %>
 
             </li>
-
-
 
 
 
@@ -96,7 +61,7 @@
           <% if user_signed_in? %>
                 <li><%= link_to "Home", tickets_path %></li>
                 <li><%= link_to "Inbox", conversations_path %></li>
-                <li><%= link_to "My Account", edit_user_path(current_user.id) %></li>
+                <li><%= link_to "My Account", user_settings_path(current_user.id) %></li>
                 <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
           <% else %>
             <li><a href="/">User Login</a></li>
@@ -104,12 +69,6 @@
           <% end %>
         </ul>
       </li>
-
-
-
-
-
-
 
 
 

@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :tickets
 
   get 'admin_dashboard', to: 'admin_dashboard#index'
-  get 'admin_dashboard/analytics', to: 'admin_dashboard#analytics'
+  get 'admin_dashboard/metrics', to: 'admin_dashboard#metrics'
   get 'admin_dashboard/:id/resolve', to: 'admin_dashboard#resolve', :as => 'resolve_ticket'
   patch 'admin_dashboard/:id/', to: 'admin_dashboard#update'
   delete 'admin_dashboard/:id/destroy', to: 'admin_dashboard#destroy', :as => 'destroy_ticket'
@@ -22,7 +22,9 @@ resources :admin_settings
 
 
 
+resources :user_settings, :except => :patch
 
+patch 'user_settings/:id/deactivate', to: 'user_settings#deactivate', :as => 'cancel_account'
 
 
 
@@ -90,8 +92,22 @@ resources :admin_settings
 
 
 
-# delete 'admins/:id' => 'admins#destroy', :as => :destroy_admin
-  put 'admins/:id' => 'admins#deactivate', :as => :deactivate_admin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -114,7 +130,39 @@ resources :admin_settings
 
 
 
-  resources :admins
+
+
+
+
+
+    resources :admins do
+      member do
+        patch 'deactivate'
+        patch 'reactivate'
+        get  'send_smstext'
+        get 'smstext'
+      end
+    end
+
+    resources :admins, :except => :patch
+
+    #get 'admins/smstext/:id', to: 'admins#smstext'
+
+
+    # delete 'users/:id' => 'users#destroy', :as => :destroy_user
+    # delete 'admins/:id' => 'admins#destroy', :as => :destroy_admin
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

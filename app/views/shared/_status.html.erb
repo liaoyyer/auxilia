@@ -1,9 +1,12 @@
 <%= case ticket_status
       when nil
-            '<span class="label label-sm label-success">OPEN</span>'.html_safe
+            '<span class="ticket-label label-sm label-success octicon octicon-tag"> OPEN</span>'.html_safe
       when false
-      		'<span class="label label-sm label-warning">IN PROGRESS</span>'.html_safe
+      		'<span class="ticket-label label-sm label-warning octicon octicon-tag"> IN PROGRESS</span>'.html_safe
       when true
-            '<span class="label label-sm label-danger">RESOLVED</span>'.html_safe
+            '<span class="ticket-label label-sm label-danger octicon octicon-tag"> RESOLVED</span>'.html_safe
       end
 %>
+
+
+

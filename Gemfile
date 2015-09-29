@@ -54,8 +54,6 @@ gem 'font-awesome-rails'
 
 gem 'devise'
 
-gem 'pundit'
-
 gem 'jquery-datatables-rails'
 
 gem 'lazy_high_charts'
@@ -66,7 +64,6 @@ gem 'tinymce-rails'
 
 gem 'mailboxer', '~> 0.13.0'
 gem 'gravatar_image_tag'
-
 gem 'chosen-rails'
 
 gem 'public_activity'

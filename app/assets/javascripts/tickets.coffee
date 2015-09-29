@@ -4,5 +4,5 @@
 
 
 jQuery  ->
-	$('#tickets').DataTable({autoWidth: true; "iDisplayLength": 25;})
-	$('a[rel~="tooltip"]').tooltip()
+	$('a.navtip').tooltip({placement: "bottom", trigger: "hover"})
+	$('#tickets').DataTable({ autoWidth: true; "iDisplayLength": 25; "fnDrawCallback": $('a[rel~="tooltip"]').tooltip() })

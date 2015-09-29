@@ -2,8 +2,11 @@
   <span class="glyphicon glyphicon-plus"></span>
   <small class="text-muted"><%= a.created_at.strftime('%H:%M:%S %-d %B %Y') %></small><br/>
   <% if a.trackable %>
-    <strong><%= a.trackable.firstname %></strong> has been registered as a new admin.
+    <strong>Admin# <%= a.trackable.id %></strong> has been registered as a new admin.
   <% else %>
     An admin has been registered and subsequently deleted.
   <% end %>
 </li>
+
+
+

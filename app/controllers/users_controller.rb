@@ -1,14 +1,15 @@
 class UsersController < ApplicationController
-
+# controller for admins to manage users (Manage Users menu option)
 
 
 
 	before_action :authenticate_access
 
+  before_action :authenticate_admin, except: [:edit, :update, :deactivate]
 
+  before_action :set_user, only: [:show, :edit, :update, :deactivate, :reactivate]
 
-
-
+  
 
 
 
@@ -17,9 +18,7 @@ class UsersController < ApplicationController
 
 
   def index
-
-	get_users
-
+	   get_users
   end
 
 
@@ -41,34 +40,21 @@ class UsersController < ApplicationController
   # GET /users/1/edit
   def edit
 
-  	@user = User.find(params[:id])
 
-
-  end
-
-
-
-
-
-
-
-
-
-  # POST /users
-  # POST /users.json
-  def create
-    @user = user.new(user_params)
-
-    respond_to do |format|
-      if @user.save
-        format.html { redirect_to @user, notice: 'user was successfully created.' }
-        format.json { render :show, status: :created, location: @user }
-      else
-        format.html { render :new }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
+    unless admin_signed_in? || params[:id].to_i == current_user.id
+      redirect_to '/'
     end
+
+
   end
+
+
+
+
+
+
+
+
 
 
 
@@ -113,31 +99,23 @@ class UsersController < ApplicationController
 
 
 
-
-
-
-
-
-
-
-
   # completely destroy account
-  def destroy
-  	@user = User.find(params[:id])
-    
-    respond_to do |format|
-      if (user_signed_in?) && (current_user.id == @user.id)
-      	@user.destroy
-        format.html { redirect_to users_url, notice: 'user has successfully destroyed their account.' }
-      elsif admin_signed_in?
-      	@user.destroy
-        format.html { redirect_to users_url, notice: 'user was successfully destroyed by admin.' }
-      end
-
-
-      format.json { head :no_content }
-    end
-  end
+  #def destroy
+  #	@user = User.find(params[:id])
+  #  
+  #  respond_to do |format|
+  #    if (user_signed_in?) && (current_user.id == @user.id)
+  #    	@user.destroy
+  #      format.html { redirect_to users_url, notice: 'user has successfully destroyed their account.' }
+  #    elsif admin_signed_in?
+  #    	@user.destroy
+  #      format.html { redirect_to users_url, notice: 'user was successfully destroyed by admin.' }
+  #    end
+  #
+  #
+  #   format.json { head :no_content }
+  # end
+  # end
 
 
 
@@ -150,7 +128,7 @@ class UsersController < ApplicationController
 
 
   def deactivate
-  	@user = User.find(params[:id])
+
     @user.create_activity action: :deactivate, owner: @current_app_usr
     respond_to do |format|
       if (user_signed_in?) && (current_user.id == @user.id)
@@ -178,7 +156,7 @@ class UsersController < ApplicationController
 
 
   def reactivate
-  	@user = User.find(params[:id])
+
     @user.create_activity action: :reactivate, owner: @current_app_usr
     respond_to do |format|
       	@user.activation_status = true

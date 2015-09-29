@@ -212,7 +212,11 @@
 
 
 
-
+.values span {
+	display: block;
+	font-size: 28px;
+	margin-bottom: 10px;
+}
 
 
 
@@ -379,3 +383,22 @@ li.dropdown.current-user .dropdown-menu li a {
 .navbar-toggle span {
 	font-size: 16px;
 }
+
+
+
+
+
+
+
+
+
+
+
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+  background-color: #f5fafb;
+}
+
+
+
+
+

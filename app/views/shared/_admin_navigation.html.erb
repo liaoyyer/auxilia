@@ -83,39 +83,12 @@
           <li class="dropdown">
 
 
-          <%= link_to admin_dashboard_activity_path, :class => "dropdown-toggle navtip", :'data-close-others' => "true", :'data-hover' => "dropdown", :'data-toggle' => "dropdown", :title => "Activity" do %>
-                <i class="fa fa-bell">
-                  <% if @unread_activity_count > 0 %>
-                      <span class="badge"><%= @unread_activity_count %></span>
-                  <% end %>
-                </i>                
+          <%= link_to admin_dashboard_activity_path, :class => "navtip", :'data-close-others' => "true", :'data-hover' => "dropdown", :title => "Activity" do %>
+                <span class="octicon octicon-pulse"></span>               
           <% end %>
 
 
-              <ul class="dropdown-menu notifications">
-                <li>
-                  <span class="dropdown-menu-title">You have <%= @unread_activity_count %> new notifications.</span>
-                </li>
-                <li>
-                  <div class="drop-down-wrapper ps-container">
-                    <ul>
-                        <%= render_activities(@recent_activities) %>
-                    </ul>
-                  </div>
 
-
-                </li>
-                <li class="view-all">
-
-                  <%= link_to admin_dashboard_activity_path do %> 
-                    See entire activity feed <i class="fa fa-arrow-circle-o-right"></i>
-                  <% end %>
-                </li>
-
-
-
-
-              </ul>
             </li>
 
 
@@ -142,12 +115,12 @@
 
 
           <%= link_to conversations_path, :class => "dropdown-toggle navtip", :'data-close-others' => "true", :'data-hover' => "dropdown", :'data-toggle' => "dropwdown", :title => 'Inbox' do %>
-                <i class="fa fa-envelope">
+              <span class="octicon octicon-inbox">
                   <% @unread_count= @mailbox.inbox(:read => false).count(:id, :distinct => true) %>
                   <% if @unread_count > 0 %>
                   <span class="badge"><%= @unread_count %></span>
                   <% end %>
-                </i>
+              </span>
           <% end %>
 
             </li>
@@ -186,8 +159,8 @@
 
         <ul class="dropdown-menu" role="menu">
           <% if admin_signed_in? %>
-                <li><%= link_to "Home", admin_dashboard_path %></li>
-                <li><%= link_to "Analysis", admin_dashboard_analytics_path %></li>
+                <li><%= link_to "Ticket Manager", admin_dashboard_path %></li>
+                <li><%= link_to "Metrics", admin_dashboard_metrics_path %></li>
                 <li><%= link_to 'Task Manager', tasks_path %></li>
                 <li><%= link_to 'Activity Feed', admin_dashboard_activity_path %></li>
                 <li><%= link_to 'Inbox', conversations_path %></li>

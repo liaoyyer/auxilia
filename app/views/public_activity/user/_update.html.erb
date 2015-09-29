@@ -1,10 +1,11 @@
 <li class="list-group-item">
   <span class="glyphicon glyphicon-plus"></span>
-  <small class="text-muted"><%= a.created_at.strftime('%H:%M:%S %-d %B %Y') %></small><br/>
-  <%= activity.owner.firstname %> has edited
-  <% if a.trackable %>
-    <strong><%= a.trackable.firstname %>'s</strong> profile.
-  <% else %>
-    a user's profile and subsequently deleted them.
-  <% end %>
+  <small class="text-muted"><%= a.created_at.strftime('%H:%M:%S %-d %B %Y') %></small><br>
+	<% if activity.owner.type == 'User' %>
+		<strong>User# <%=  activity.owner.id %></strong> has edited their profile.
+	<% elsif activity.owner.type == 'Admin' && activity.owner.id == a.trackable.id %>
+		<strong>Admin# <%= activity.owner.id %></strong> has edited the profile of <strong>User# <%=  a.trackable.id %></strong>.
+	<% end %>
 </li>
+
+

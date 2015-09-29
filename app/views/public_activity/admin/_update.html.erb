@@ -1,9 +1,9 @@
 <li class="list-group-item">
   <span class="glyphicon glyphicon-plus"></span>
-  <small class="text-muted"><%= a.created_at.strftime('%H:%M:%S %-d %B %Y') %></small><br/>
-  <%= activity.owner.firstname %> has edited
+  <small class="text-muted"><%= a.created_at.strftime('%H:%M:%S %-d %B %Y') %></small><br>
+  <%= activity.owner.type %># <%= activity.owner.id %> has edited
   <% if a.trackable %>
-    <strong><%= a.trackable.firstname %>'s</strong> profile.
+    the profile of <strong>Admin# <%= a.trackable.id %></strong>.
   <% else %>
     an admin's profile and subsequently deleted them.
   <% end %>

@@ -16,10 +16,7 @@ a.btn-newticket{
 
 
 
-.ticket_description {
-  width: 850px;
-  height: 225px;
-}
+
 
 
 
@@ -61,3 +58,19 @@ a:active.ticket-nav-link{
     background-color: transparent !important;
 }
 */
+
+
+
+
+
+
+
+
+
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+  background-color: #f5f9fd;
+}
+
+
+
+

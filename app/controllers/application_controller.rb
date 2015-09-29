@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
   before_action :set_app_usr
   before_action :get_mailbox
 
-  before_action :load_activity_info, if: :admin_signed_in?
+
   before_action :load_taskmanager_info, if: :admin_signed_in?
 
 
@@ -64,6 +64,13 @@ class ApplicationController < ActionController::Base
 
 
 
+
+
+
+
+
+
+
   def adminfilter
     if admin_signed_in?
       redirect_to admin_dashboard_path
@@ -86,6 +93,16 @@ class ApplicationController < ActionController::Base
           redirect_to new_admin_session_path
       end
   end
+
+
+  def authenticate_user
+      if !(user_signed_in?)
+          redirect_to new_user_session_path
+      end
+  end
+
+
+
 
 
 
@@ -130,10 +147,6 @@ end
 
 
 
-  def load_activity_info
-    @recent_activities = PublicActivity::Activity.where(read_flag: [false, nil]).order('created_at DESC').limit(5)
-    @unread_activity_count = PublicActivity::Activity.where(read_flag: [false, nil]).count
-  end
 
 
 

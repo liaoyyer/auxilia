@@ -1,10 +1,12 @@
 <li class="list-group-item">
   <span class="glyphicon glyphicon-edit"></span>
-  <small class="text-muted"><%= a.created_at.strftime('%H:%M:%S %-d %B %Y') %></small><br/>
-  <%= activity.owner ? activity.owner.firstname : 'Guest' %>
-  <% if a.trackable %>
-    edited ticket <strong>#<%= link_to a.trackable.id, ticket_path(a.trackable) %></strong>
+  <small class="text-muted"><%= a.created_at.strftime('%H:%M:%S %-d %B %Y') %></small><br>
+  <strong><%= activity.owner.type %>#  <%= activity.owner.id %></strong>
+  <% if a.trackable && activity.owner.type == 'Admin' && a.trackable.status == true %>
+  	has resolved <strong>ticket# <%= link_to a.trackable.id, ticket_path(a.trackable) %></strong>
+  <% elsif a.trackable %>
+    has edited ticket <strong>#<%= link_to a.trackable.id, ticket_path(a.trackable) %></strong>
   <% else %>
-    edited a ticket and then deleted it.
+    has edited a ticket and then deleted it.
   <% end %>
 </li>

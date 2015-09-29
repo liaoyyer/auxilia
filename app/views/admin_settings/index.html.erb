@@ -1,4 +1,4 @@
-<h2>Admin Profile</h2>
+<h2>My Admin Profile</h2>
 
 
   <br>
@@ -43,13 +43,20 @@
 
 <br>
 <br>
+<br>
+<br>
 
 
 
 
-<h3>Delete Account</h3>
 
-<p><%= button_to "Delete Account", registration_path(resource_name), :class => 'btn btn-danger', data: { confirm: "Are you sure?" }, method: :delete %></p>
+<h4>Cancel Account</h4>
+<%= button_to "Cancel", deactivate_admin_path(@admin), data: { confirm: "Are you sure?" }, method: :patch, class: 'btn btn-xs btn-danger', title: 'Cancel', rel: 'tooltip' %>
+
+
+
+
+
 
 
 <br>
