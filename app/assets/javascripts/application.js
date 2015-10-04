@@ -22,6 +22,7 @@
 //= require bootstrap-sprockets
 //= require highcharts/highcharts-more
 //= require highcharts/highcharts
+//= require jquery.sparkline.min
 //= require tasks
 //= require users
 //= require admins

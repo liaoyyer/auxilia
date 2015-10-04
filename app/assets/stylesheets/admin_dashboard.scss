@@ -359,6 +359,63 @@ li.dropdown.current-user .dropdown-menu li a {
 
 
 
+
+
+
+/* Dashboard Styles */
+
+
+
+
+#wrapper {
+    padding-left: 0;
+}
+
+#page-wrapper {
+    width: 100%;
+    padding: 0;
+    background-color: #fff;
+}
+
+
+@media(min-width:768px) {
+    #wrapper {
+        padding-left: 225px;
+    }
+
+    #page-wrapper {
+        padding: 10px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+/* Top Navigation */
+
+.top-nav {
+    padding: 0 15px;
+}
+
+.top-nav>li {
+    display: inline-block;
+    float: left;
+}
+
+
+
+
+
+
+
+
 /* Side Navigation */
 
 @media(min-width:768px) {
@@ -417,6 +474,25 @@ li.dropdown.current-user .dropdown-menu li a {
     }
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .side-nav>li>ul {
     padding: 0;
 }
@@ -456,49 +532,25 @@ li.dropdown.current-user .dropdown-menu li a {
 
 
 
-/* Dashboard Styles */
 
 
 
 
-#wrapper {
-    padding-left: 0;
+
+
+
+
+
+
+
+
+#area_chart_container, #admin_bar_chart_container, #admin_resolution_times_bar_chart_container, #polar_chart_container{
+    width: auto !important; 
+    height: auto !important;
+    float: none !important;
+    margin: auto !important;
+	box-sizing: inherit !important; 
 }
-
-#page-wrapper {
-    width: 100%;
-    padding: 0;
-    background-color: #fff;
-}
-
-
-@media(min-width:768px) {
-    #wrapper {
-        padding-left: 225px;
-    }
-
-    #page-wrapper {
-        padding: 10px;
-    }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -15,18 +15,46 @@
   <body data-no-turbolink>
 
     <% if admin_signed_in? %>
-    <%= render 'shared/admin_navigation' %>
+        <!-- for admin dashboard -->
+        <div id="wrapper">
+        <%= render 'shared/admin_navigation' %>
     <% else %>
-    <%= render 'shared/navigation' %>
+        <%= render 'shared/navigation' %>
     <% end %>
 
 
-    <div id="main-container" class="container">
+
+
+
+
+      <% if admin_signed_in? %>
+          <!-- wrapper to seperate page from admin dashboard -->
+          <div id="page-wrapper">
+      <% end %>
+
+
+
+    <div id="main-container" class="container-fluid">
        <p class="notice"><%= notice %></p>
        <p class="alert"><%= alert %></p>
+
+
+
        <%= yield %>
+
+
     </div>
 
 
+      <% if admin_signed_in? %>
+        </div>
+      <% end %>      
+
+
+
+
+
+
+    </div>
   </body>
 </html>
